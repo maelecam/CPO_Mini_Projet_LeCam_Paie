@@ -25,6 +25,10 @@ public class PlateauDeJeu {
         this.nbToursMax = nbToursMax;
     }
 
+    PlateauDeJeu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public void SetcombinaisonSecrete(Combinaison combinaisonSecrete) {
         this.combinaisonSecrete = combinaisonSecrete;
     }
