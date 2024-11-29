@@ -4,6 +4,7 @@
  */
 package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @author 33604
  */
 public class PlateauDeJeu {
-   
+
     private Combinaison combinaisonSecrete;
     private List<Combinaison> tentatives;
     private List<String> reponses;
@@ -19,8 +20,8 @@ public class PlateauDeJeu {
 
     public PlateauDeJeu(Combinaison combinaisonSecrete, List<Combinaison> tentatives, List<String> reponses, int nbToursMax) {
         this.combinaisonSecrete = combinaisonSecrete;
-        this.tentatives = tentatives;
-        this.reponses = reponses;
+        this.tentatives = new ArrayList<>();
+        this.reponses = new ArrayList<>();
         this.nbToursMax = nbToursMax;
     }
 
@@ -45,33 +46,31 @@ public class PlateauDeJeu {
     }
 
     public void proposerCombinaison(Combinaison tentative) {
-        if (tentatives.size() < nbToursMax) {
-            tentatives.add(tentative);
-
-            // Calcul des indices directement
-            int noirs = combinaisonSecrete.compterBienPlaces(tentative);
-            int blancs = combinaisonSecrete.compterMalPlaces(tentative);
-
-            // Ajout de la réponse au format texte
-            reponses.add(noirs + " noirs, " + blancs + " blancs");
-        } else {
+        if (tentatives.size() >= nbToursMax) {
             System.out.println("Nombre maximal de tours atteint !");
+            return;
         }
-    }
-    public void AfficherPlateau() {
 
-    }
-    public void estVictoire() {
+        // Ajouter la tentative à l'historique
+        tentatives.add(tentative);
 
+        // Générer et stocker les indices pour la tentative
+        String indice = combinaisonSecrete.genererIndices(tentative);
+        reponses.add(indice);
+
+        System.out.println("Tentative ajoutée : " + tentative + " | Indices : " + indice);
     }
 
-    public void estDefaite() {
-
+    public boolean estVictoire() {
+        if (!tentatives.isEmpty()) {
+            Combinaison derniereTentative = tentatives.get(tentatives.size() - 1);
+            return combinaisonSecrete.equals(derniereTentative);
+        }
+        return false;
     }
 
-    @Override
-    public String toString() {
-        return "PlateauDeJeu{" + "combinaisonSecrete=" + combinaisonSecrete + ", tentatives=" + tentatives + ", reponses=" + reponses + ", nbToursMax=" + nbToursMax + '}';
+    // Méthode pour vérifier si le joueur a perdu
+    public boolean estDefaite() {
+        return !estVictoire() && tentatives.size() >= nbToursMax;
     }
-   
 }
