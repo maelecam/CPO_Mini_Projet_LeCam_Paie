@@ -4,6 +4,7 @@
  */
 package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -11,6 +12,10 @@ import java.util.Random;
  * @author 33604
  */
 public class Combinaison {
+
+    static Combinaison genererAleatoire(String[] couleursPossibles, int tailleCombinaison) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private Pion[] pions; 
    
     public Combinaison() {
@@ -32,6 +37,10 @@ public class Combinaison {
             pionAleatoires[i] = new Pion(couleurs[random.nextInt(couleurs.length)]);
         }
         return new Combinaison(pionAleatoires);
+    }
+
+    Combinaison(List<Pion> pionsProposes) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     public int calculerPionsBienPlaces(Combinaison autreCombinaison) {
@@ -103,5 +112,13 @@ public class Combinaison {
 
         System.out.println("Pions bien placés : " + combinaison1.calculerPionsBienPlaces(combinaison2));
         System.out.println("Pions mal placés : " + combinaison1.calculerPionsMalPlaces(combinaison2));
+    }
+
+    int compterPionsBienPlaces(Combinaison proposition) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    int compterPionsMalPlaces(Combinaison proposition) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

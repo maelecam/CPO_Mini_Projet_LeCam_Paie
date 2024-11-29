@@ -17,6 +17,10 @@ public class Pion {
         this.couleur = couleur;
     }
 
+    Pion(String couleur) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // Méthode getter pour accéder à la couleur
     public Character getCouleur() {
         return couleur;
