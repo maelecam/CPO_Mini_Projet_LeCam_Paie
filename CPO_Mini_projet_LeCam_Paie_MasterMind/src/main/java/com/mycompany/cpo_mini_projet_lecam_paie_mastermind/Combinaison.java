@@ -30,7 +30,7 @@ public class Combinaison {
     }
     
     public static Combinaison genererCombinaisonAleatoire() {
-        char[] couleurs = {'R', 'B', 'V', 'J', 'O', 'M'}; 
+        char[] couleurs = {'R', 'B', 'V', 'J', 'W', 'N'}; 
         Random random = new Random();
         Pion[] pionAleatoires = new Pion[4];
         for (int i = 0; i < 4; i++) {
@@ -81,9 +81,9 @@ public class Combinaison {
                 return 2;
             case 'J':
                 return 3;
-            case 'O':
+            case 'W':
                 return 4;
-            case 'M':
+            case 'N':
                 return 5;
             default:
                 throw new IllegalArgumentException("Couleur invalide");
