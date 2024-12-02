@@ -22,6 +22,7 @@ public class PlateauDeJeu {
         String indices = calculerIndices(tentative);
         reponses.add(indices);
     }
+    
 
     // Calcul des indices pour une tentative
     private String calculerIndices(Combinaison tentative) {
