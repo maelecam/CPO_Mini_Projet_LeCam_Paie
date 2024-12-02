@@ -1,67 +1,88 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author 33604
- */
 public class Partie {
-private final Combinaison combinaisonSecrete;
-    private final PlateauDeJeu plateauDeJeu;
-    private final int maxTours;
+    private PlateauDeJeu plateau;
+    private ArrayList<Character> couleursDisponibles;
+    private int tailleCombinaison;  // Attribut pour la taille de la combinaison
 
-    public Partie(int maxTours, String[] couleursPossibles, int tailleCombinaison) {
-        this.maxTours = maxTours;
-        this.combinaisonSecrete = Combinaison.genererAleatoire(couleursPossibles, tailleCombinaison);
-        this.plateauDeJeu = new PlateauDeJeu();
+    // Constructeur
+    public Partie(int tailleCombinaison, int nbToursMax, List<Character> couleursDisponibles) {
+        this.tailleCombinaison = tailleCombinaison; // Initialiser la taille
+        this.couleursDisponibles = new ArrayList<>(couleursDisponibles);
+        Combinaison combinaisonSecrete = Combinaison.genererCombinaisonAleatoire();
+        this.plateau = new PlateauDeJeu(combinaisonSecrete, nbToursMax);
     }
 
-    public void jouer() {
-    try (Scanner scanner = new Scanner(System.in)) {
-        System.out.println("Bienvenue dans le jeu MasterMind !");
-        System.out.println("Devinez la combinaison secrète. Les couleurs possibles sont : Rouge, Bleu, Vert, Jaune, Noir, Blanc.");
-        System.out.println("Chaque combinaison contient 4 couleurs, et vous avez " + maxTours + " tours pour deviner.");
+    // Lancer la partie
+    public void lancerPartie() {
+        Scanner scanner = new Scanner(System.in);
+        afficherRegles();
+        while (true) {
+            // Afficher l'état actuel du plateau
+            plateau.afficherPlateau();
 
-        boolean victoire = false;
-
-        for (int tour = 1; tour <= maxTours; tour++) {
-            System.out.println("\nTour " + tour + " : Entrez votre combinaison (ex: Rouge Bleu Vert Jaune) :");
-            String entree = scanner.nextLine();
-            String[] couleursProposees = entree.split(" ");
-            List<Pion> pionsProposes = new ArrayList<>();
-
-            for (String couleur : couleursProposees) {
-                pionsProposes.add(new Pion(couleur));
-            }
-
-            Combinaison proposition = new Combinaison(pionsProposes);
-            int noirs = combinaisonSecrete.compterPionsBienPlaces(proposition);
-            int blancs = combinaisonSecrete.compterPionsMalPlaces(proposition);
-
-            plateauDeJeu.ajouterTentative(proposition, noirs, blancs);
-
-            System.out.println("Résultat : " + noirs + " bien placés (noirs), " + blancs + " mal placés (blancs).");
-            System.out.println("Historique des tentatives :");
-            plateauDeJeu.afficherHistorique();
-
-            if (noirs == combinaisonSecrete.toString().split(" ").length) {
-                victoire = true;
+            // Vérifier si la partie est terminée
+            if (plateau.estVictoire()) {
+                terminerPartie(true);
+                break;
+            } else if (plateau.estDefaite()) {
+                terminerPartie(false);
                 break;
             }
+
+            // Demander une combinaison au joueur
+            System.out.println("Entrez une combinaison de " + tailleCombinaison + " couleurs (ex : R B V Y) :");
+            String entreeUtilisateur = scanner.nextLine().toUpperCase().replace(" ", "");
+
+            // Valider et convertir l'entrée utilisateur
+            if (entreeUtilisateur.length() != tailleCombinaison) {
+                System.out.println("Erreur : entrez exactement " + tailleCombinaison + " couleurs.");
+                continue;
+            }
+
+            Pion[] pionsProposes = new Pion[entreeUtilisateur.length()];
+            try {
+                for (int i = 0; i < entreeUtilisateur.length(); i++) {
+                    char couleur = entreeUtilisateur.charAt(i);
+                    if (!couleursDisponibles.contains(couleur)) {
+                        throw new IllegalArgumentException("Couleur invalide : " + couleur);
+                    }
+                    pionsProposes[i] = new Pion(couleur);
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+
+            // Proposer la combinaison au plateau
+            Combinaison tentative = new Combinaison(pionsProposes);
+            plateau.proposerCombinaison(tentative);
         }
 
+        scanner.close();
+    }
+
+    // Terminer la partie
+    public void terminerPartie(boolean victoire) {
+        System.out.println("Fin de la partie !");
         if (victoire) {
-            System.out.println("\nFélicitations ! Vous avez deviné la combinaison secrète : " + combinaisonSecrete);
+            System.out.println("Félicitations ! Vous avez deviné la combinaison secrète !");
         } else {
-            System.out.println("\nDommage ! Vous avez épuisé vos tentatives. La combinaison secrète était : " + combinaisonSecrete);
+            System.out.println("Vous avez perdu. La combinaison secrète était :");
+            System.out.println(plateau.getCombinaisonSecrete().afficherCombinaisonLisible());
         }
     }
+
+    public static void main(String[] args) {
+        // Exemple de couleurs disponibles
+        List<Character> couleurs = List.of('R', 'B', 'V', 'J', 'O', 'M');
+
+        // Lancer une partie avec 4 pions, 10 tours maximum et les couleurs données
+        Partie partie = new Partie(4, 10, couleurs);
+        partie.lancerPartie();
     }
 }
