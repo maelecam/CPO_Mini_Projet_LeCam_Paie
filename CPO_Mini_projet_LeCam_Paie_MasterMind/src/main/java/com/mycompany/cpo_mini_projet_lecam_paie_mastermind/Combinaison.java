@@ -39,9 +39,6 @@ public class Combinaison {
         return new Combinaison(pionAleatoires);
     }
 
-    Combinaison(List<Pion> pionsProposes) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     public int calculerPionsBienPlaces(Combinaison autreCombinaison) {
         int bienPlaces = 0;
@@ -119,6 +116,10 @@ public class Combinaison {
     }
 
     int compterPionsMalPlaces(Combinaison proposition) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    String genererIndices(Combinaison tentative) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

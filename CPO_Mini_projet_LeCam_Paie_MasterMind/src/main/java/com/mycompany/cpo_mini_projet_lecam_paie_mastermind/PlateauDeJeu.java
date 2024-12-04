@@ -77,4 +77,13 @@ public class PlateauDeJeu {
     public boolean estDefaite() {
         return !estVictoire() && tentatives.size() >= nbToursMax;
     }
+
+    void afficherHistorique() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void ajouterTentative(Combinaison proposition, int noirs, int blancs) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+            
 }
