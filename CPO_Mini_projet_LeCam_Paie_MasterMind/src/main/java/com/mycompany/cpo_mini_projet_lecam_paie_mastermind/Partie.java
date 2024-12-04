@@ -5,40 +5,43 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Partie {
-    private PlateauDeJeu plateau;
-    private ArrayList<Character> couleursDisponibles;
-    private int tailleCombinaison;  // Attribut pour la taille de la combinaison
+    private final PlateauDeJeu plateau;
+    private final ArrayList<Character> couleursDisponibles;
+    private final int tailleCombinaison;
 
-    // Constructeur
     public Partie(int tailleCombinaison, int nbToursMax, List<Character> couleursDisponibles) {
-        this.tailleCombinaison = tailleCombinaison; // Initialiser la taille
+        this.tailleCombinaison = tailleCombinaison;
         this.couleursDisponibles = new ArrayList<>(couleursDisponibles);
         Combinaison combinaisonSecrete = Combinaison.genererCombinaisonAleatoire();
         this.plateau = new PlateauDeJeu(combinaisonSecrete, nbToursMax);
     }
 
-    // Lancer la partie
     public void lancerPartie() {
         try (Scanner scanner = new Scanner(System.in)) {
             afficherRegles();
             while (true) {
-                // Afficher l'état actuel du plateau
                 plateau.afficherPlateau();
                 
-                // Vérifier si la partie est terminée
                 if (plateau.estVictoire()) {
                     terminerPartie(true);
                     break;
                 } else if (plateau.estDefaite()) {
+                    System.out.println("Voulez-vous voir la solution ? (O/N)");
+                    String reponse = scanner.nextLine().toUpperCase();
+                    
+                    if (reponse.equals("O")) {
+                        System.out.println("La solution était : " + 
+                            ((Combinaison)plateau.getCombinaisonSecrete()).afficherCombinaisonLisible());
+                    } else {
+                        System.out.println("Au revoir.");
+                    }
                     terminerPartie(false);
                     break;
                 }
                 
-                // Demander une combinaison au joueur
                 System.out.println("Entrez une combinaison de " + tailleCombinaison + " couleurs (ex : R B V Y) :");
                 String entreeUtilisateur = scanner.nextLine().toUpperCase().replace(" ", "");
                 
-                // Valider et convertir l'entrée utilisateur
                 if (entreeUtilisateur.length() != tailleCombinaison) {
                     System.out.println("Erreur : entrez exactement " + tailleCombinaison + " couleurs.");
                     continue;
@@ -58,35 +61,28 @@ public class Partie {
                     continue;
                 }
                 
-                // Proposer la combinaison au plateau
                 Combinaison tentative = new Combinaison(pionsProposes);
                 plateau.proposerCombinaison(tentative);
             }
         }
     }
 
-    // Terminer la partie
     public void terminerPartie(boolean victoire) {
         System.out.println("Fin de la partie !");
         if (victoire) {
             System.out.println("Félicitations ! Vous avez deviné la combinaison secrète !");
-        } else {
-            System.out.println("Vous avez perdu. La combinaison secrète était :");
-            //System.out.println(plateau.getCombinaisonSecrete().afficherCombinaisonLisible());
         }
     }
 
     public static void main(String[] args) {
-        // Exemple de couleurs disponibles
         List<Character> couleurs = List.of('R', 'B', 'V', 'J', 'O', 'M');
-
-        // Lancer une partie avec 4 pions, 10 tours maximum et les couleurs données
         Partie partie = new Partie(4, 10, couleurs);
         partie.lancerPartie();
     }
 
     private void afficherRegles() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        System.out.println("Bienvenue au jeu Mastermind !");
+        System.out.println("Devinez la combinaison secrète en 10 tours maximum.");
+        System.out.println("Utilisez les couleurs : R (Rouge), B (Bleu), V (Vert), J (Jaune), O (Orange), M (Marron)");
     }
 }
-// pour commit

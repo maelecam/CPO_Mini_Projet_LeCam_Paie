@@ -10,6 +10,10 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
  * @author 33604
  */
   import java.util.Scanner;
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Random;
+    import java.util.Scanner;
 
 public class CPO_Mini_projet_LeCam_Paie_MasterMind {
 
