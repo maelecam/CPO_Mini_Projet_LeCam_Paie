@@ -18,8 +18,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      */
     public FenetrePrincipale() {
         initComponents();
-        int nbLignes = 5;
-        int nbColonnes = 5;
+        int nbLignes = 7;
+        int nbColonnes = 4;
         PanneauDeJeu.setLayout(new GridLayout(nbLignes, nbColonnes));
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
@@ -29,13 +29,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         initComponents();
         int nbLignes2 = 1;
-        int nbColonnes2 = 3;
+        int nbColonnes2 = 4;
         CompositionAlea.setLayout(new GridLayout(nbLignes2, nbColonnes2));
-        for (int i = 0; i < nbLignes; i++){
-            JButton bouton_cellule2 = new JButton();
-            CompositionAlea.add(bouton_cellule2);
+        for (int i = 0; i < nbLignes2; i++) {
+            for (int j = 0; j < nbColonnes2; j++) {
+                JButton bouton_cellule2 = new JButton();
+                CompositionAlea.add(bouton_cellule2);
+            }
         }
-        
+
     }
 
     /**
@@ -55,6 +57,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         AfficherCombinaisonSecrete = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        Régles = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 255));
 
@@ -70,6 +73,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanneauDeJeu.setBackground(new java.awt.Color(242, 242, 180));
@@ -125,39 +130,32 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         getContentPane().add(Fond, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 200, 50));
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         AfficherCombinaisonSecrete.setText("jButton1");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AfficherCombinaisonSecrete)
-                .addGap(30, 30, 30))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(259, Short.MAX_VALUE)
-                .addComponent(AfficherCombinaisonSecrete)
-                .addGap(18, 18, 18))
-        );
+        jPanel1.add(AfficherCombinaisonSecrete, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 259, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 100, 300));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 255));
 
+        Régles.setText("jButton1");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Régles)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(259, Short.MAX_VALUE)
+                .addComponent(Régles)
+                .addGap(18, 18, 18))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 300));
@@ -196,6 +194,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FenetrePrincipale().setVisible(true);
+
             }
         });
 
@@ -205,6 +204,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel CompositionAlea;
     private javax.swing.JPanel Fond;
     private javax.swing.JPanel PanneauDeJeu;
+    private javax.swing.JButton Régles;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
