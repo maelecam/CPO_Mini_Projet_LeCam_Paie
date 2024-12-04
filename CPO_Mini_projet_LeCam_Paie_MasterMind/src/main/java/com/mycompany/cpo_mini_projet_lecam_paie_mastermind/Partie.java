@@ -19,51 +19,50 @@ public class Partie {
 
     // Lancer la partie
     public void lancerPartie() {
-        Scanner scanner = new Scanner(System.in);
-        afficherRegles();
-        while (true) {
-            // Afficher l'état actuel du plateau
-            plateau.afficherPlateau();
-
-            // Vérifier si la partie est terminée
-            if (plateau.estVictoire()) {
-                terminerPartie(true);
-                break;
-            } else if (plateau.estDefaite()) {
-                terminerPartie(false);
-                break;
-            }
-
-            // Demander une combinaison au joueur
-            System.out.println("Entrez une combinaison de " + tailleCombinaison + " couleurs (ex : R B V Y) :");
-            String entreeUtilisateur = scanner.nextLine().toUpperCase().replace(" ", "");
-
-            // Valider et convertir l'entrée utilisateur
-            if (entreeUtilisateur.length() != tailleCombinaison) {
-                System.out.println("Erreur : entrez exactement " + tailleCombinaison + " couleurs.");
-                continue;
-            }
-
-            Pion[] pionsProposes = new Pion[entreeUtilisateur.length()];
-            try {
-                for (int i = 0; i < entreeUtilisateur.length(); i++) {
-                    char couleur = entreeUtilisateur.charAt(i);
-                    if (!couleursDisponibles.contains(couleur)) {
-                        throw new IllegalArgumentException("Couleur invalide : " + couleur);
-                    }
-                    pionsProposes[i] = new Pion(couleur);
+        try (Scanner scanner = new Scanner(System.in)) {
+            afficherRegles();
+            while (true) {
+                // Afficher l'état actuel du plateau
+                plateau.afficherPlateau();
+                
+                // Vérifier si la partie est terminée
+                if (plateau.estVictoire()) {
+                    terminerPartie(true);
+                    break;
+                } else if (plateau.estDefaite()) {
+                    terminerPartie(false);
+                    break;
                 }
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
+                
+                // Demander une combinaison au joueur
+                System.out.println("Entrez une combinaison de " + tailleCombinaison + " couleurs (ex : R B V Y) :");
+                String entreeUtilisateur = scanner.nextLine().toUpperCase().replace(" ", "");
+                
+                // Valider et convertir l'entrée utilisateur
+                if (entreeUtilisateur.length() != tailleCombinaison) {
+                    System.out.println("Erreur : entrez exactement " + tailleCombinaison + " couleurs.");
+                    continue;
+                }
+                
+                Pion[] pionsProposes = new Pion[entreeUtilisateur.length()];
+                try {
+                    for (int i = 0; i < entreeUtilisateur.length(); i++) {
+                        char couleur = entreeUtilisateur.charAt(i);
+                        if (!couleursDisponibles.contains(couleur)) {
+                            throw new IllegalArgumentException("Couleur invalide : " + couleur);
+                        }
+                        pionsProposes[i] = new Pion(couleur);
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                    continue;
+                }
+                
+                // Proposer la combinaison au plateau
+                Combinaison tentative = new Combinaison(pionsProposes);
+                plateau.proposerCombinaison(tentative);
             }
-
-            // Proposer la combinaison au plateau
-            Combinaison tentative = new Combinaison(pionsProposes);
-            plateau.proposerCombinaison(tentative);
         }
-
-        scanner.close();
     }
 
     // Terminer la partie
@@ -73,7 +72,7 @@ public class Partie {
             System.out.println("Félicitations ! Vous avez deviné la combinaison secrète !");
         } else {
             System.out.println("Vous avez perdu. La combinaison secrète était :");
-            System.out.println(plateau.getCombinaisonSecrete().afficherCombinaisonLisible());
+            //System.out.println(plateau.getCombinaisonSecrete().afficherCombinaisonLisible());
         }
     }
 
@@ -84,6 +83,10 @@ public class Partie {
         // Lancer une partie avec 4 pions, 10 tours maximum et les couleurs données
         Partie partie = new Partie(4, 10, couleurs);
         partie.lancerPartie();
+    }
+
+    private void afficherRegles() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 // pour commit
