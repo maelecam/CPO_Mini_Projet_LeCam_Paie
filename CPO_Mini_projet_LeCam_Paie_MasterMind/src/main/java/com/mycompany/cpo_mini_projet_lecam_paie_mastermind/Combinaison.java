@@ -18,7 +18,7 @@ public class Combinaison {
     }
     private Pion[] pions; 
    
-    public Combinaison() {
+    public Combinaison(List<Pion> pionsProposes) {
         pions = new Pion[4];
     }
     

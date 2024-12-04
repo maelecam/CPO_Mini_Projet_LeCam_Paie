@@ -65,3 +65,4 @@ private final Combinaison combinaisonSecrete;
     }
     }
 }
+// pour commit
