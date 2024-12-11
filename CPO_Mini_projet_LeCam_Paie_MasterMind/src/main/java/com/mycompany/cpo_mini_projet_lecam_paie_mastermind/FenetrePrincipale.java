@@ -4,10 +4,13 @@
  */
 package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,10 +32,36 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int nbLignes = 10;
         int nbColonnes = 4;
         PanneauDeJeu.setLayout(new GridLayout(nbLignes, nbColonnes));
+        // Couleurs disponibles et leurs noms
+        Color[] couleurs = {Color.RED, Color.YELLOW, Color.BLACK, Color.BLUE, Color.GREEN};
+
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
-                JButton bouton_cellule = new JButton(); // création d'un bouton
-                PanneauDeJeu.add(bouton_cellule); // ajout au Jpanel PanneauGrille
+                JButton bouton_cellule = new JButton(); // Création d'un bouton
+                bouton_cellule.setBackground(Color.WHITE); // Couleur par défaut
+
+                // Ajouter un ActionListener pour changer la couleur
+                bouton_cellule.addActionListener(e -> {
+                    // Affichage d'un menu d'options
+                    String[] options = {"Rouge", "Jaune", "Noir", "Bleu", "Vert"};
+                    int choix = JOptionPane.showOptionDialog(
+                            this,
+                            "Choisissez une couleur",
+                            "Couleur",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            options,
+                            options[0]
+                    );
+
+                    // Appliquer la couleur choisie
+                    if (choix >= 0) {
+                        bouton_cellule.setBackground(couleurs[choix]);
+                    }
+                });
+
+                PanneauDeJeu.add(bouton_cellule); // Ajouter le bouton au panneau
             }
         }
         int nbLignes2 = 1;
@@ -61,6 +90,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         Fond = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         AfficherCombinaisonSecrete = new javax.swing.JButton();
@@ -138,6 +168,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton2.setText("Valider");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 100, 250));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 255));
@@ -226,7 +260,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     @Override
     public String toString() {
         return "FenetrePrincipale{" + "elements=" + elements + '}';
-    
+
     }//GEN-LAST:event_AfficherCombinaisonSecreteActionPerformed
 
     /**
@@ -260,7 +294,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FenetrePrincipale().setVisible(true);
-                
+
             }
         });
 
@@ -271,6 +305,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel Fond;
     private javax.swing.JPanel PanneauDeJeu;
     private javax.swing.JButton Régles;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
