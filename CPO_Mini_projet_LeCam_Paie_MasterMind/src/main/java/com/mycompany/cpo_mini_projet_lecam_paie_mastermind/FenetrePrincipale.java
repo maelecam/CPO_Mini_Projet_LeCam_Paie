@@ -5,6 +5,7 @@
 package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.JButton;
 
 /**
@@ -16,10 +17,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form FenetrePrincipale
      */
+    private PlateauDeJeu plateau;
+    private ArrayList<Character> couleursDisponibles;
+    private int tailleCombinaison;
+    
     public FenetrePrincipale() {
         initComponents();
-        int nbLignes = 10;
-        int nbColonnes = 10;
+        int nbLignes = 7;
+        int nbColonnes = 4;
         PanneauDeJeu.setLayout(new GridLayout(nbLignes, nbColonnes));
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
@@ -27,6 +32,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 PanneauDeJeu.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }
         }
+        int nbLignes2 = 1;
+        int nbColonnes2 = 4;
+        CompositionAlea.setLayout(new GridLayout(nbLignes2, nbColonnes2));
+        for (int i = 0; i < nbLignes2; i++) {
+            for (int j = 0; j < nbColonnes2; j++) {
+                JButton bouton_cellule2 = new JButton();
+                CompositionAlea.add(bouton_cellule2);
+            }
+        }
+        
+
     }
 
     /**
@@ -38,28 +54,177 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         PanneauDeJeu = new javax.swing.JPanel();
+        CompositionAlea = new javax.swing.JPanel();
+        Fond = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        AfficherCombinaisonSecrete = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        Régles = new javax.swing.JButton();
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 66, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 196, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanneauDeJeu.setBackground(new java.awt.Color(242, 242, 180));
+        PanneauDeJeu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout PanneauDeJeuLayout = new javax.swing.GroupLayout(PanneauDeJeu);
         PanneauDeJeu.setLayout(PanneauDeJeuLayout);
         PanneauDeJeuLayout.setHorizontalGroup(
             PanneauDeJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 196, Short.MAX_VALUE)
         );
         PanneauDeJeuLayout.setVerticalGroup(
             PanneauDeJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 196, Short.MAX_VALUE)
         );
 
-        getContentPane().add(PanneauDeJeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 100, 100));
+        getContentPane().add(PanneauDeJeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 200, 200));
+
+        CompositionAlea.setBackground(new java.awt.Color(255, 51, 0));
+        CompositionAlea.setForeground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout CompositionAleaLayout = new javax.swing.GroupLayout(CompositionAlea);
+        CompositionAlea.setLayout(CompositionAleaLayout);
+        CompositionAleaLayout.setHorizontalGroup(
+            CompositionAleaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        CompositionAleaLayout.setVerticalGroup(
+            CompositionAleaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(CompositionAlea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 200, 50));
+
+        Fond.setBackground(new java.awt.Color(51, 255, 51));
+
+        jLabel1.setText("        MASTERMIND");
+
+        javax.swing.GroupLayout FondLayout = new javax.swing.GroupLayout(Fond);
+        Fond.setLayout(FondLayout);
+        FondLayout.setHorizontalGroup(
+            FondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FondLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        FondLayout.setVerticalGroup(
+            FondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(Fond, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 200, 50));
+
+        jPanel1.setBackground(new java.awt.Color(255, 0, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 100, 250));
+
+        jPanel3.setBackground(new java.awt.Color(51, 51, 255));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 100, 250));
+
+        AfficherCombinaisonSecrete.setText("jButton1");
+        AfficherCombinaisonSecrete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AfficherCombinaisonSecreteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AfficherCombinaisonSecrete, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AfficherCombinaisonSecrete, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 100, 50));
+
+        Régles.setText("jButton1");
+        Régles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RéglesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Régles, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Régles, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RéglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RéglesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RéglesActionPerformed
+
+    private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
+        // TODO add your handling code here:
+            
+            System.out.println("Bienvenue dans le jeu MasterMind !");
+            System.out.println("Essayez de deviner la combinaison secrète.");
+            System.out.println("La combinaison contient 4 pions et utilise des couleurs suivantes : R (Rouge), B (Bleu), V (Vert), J (Jaune), W (Blanc), N (Noir).");
+            System.out.println("Pour chaque tentative, entrez 4 couleurs sous la forme d'une chaîne de caractères.");
+            System.out.println("Exemple de tentative : RVJN");
+            System.out.println("Vous avez 10 tentatives pour trouver la combinaison secrète.");
+        
+    }//GEN-LAST:event_AfficherCombinaisonSecreteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,11 +257,22 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FenetrePrincipale().setVisible(true);
+
             }
         });
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AfficherCombinaisonSecrete;
+    private javax.swing.JPanel CompositionAlea;
+    private javax.swing.JPanel Fond;
     private javax.swing.JPanel PanneauDeJeu;
+    private javax.swing.JButton Régles;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }
