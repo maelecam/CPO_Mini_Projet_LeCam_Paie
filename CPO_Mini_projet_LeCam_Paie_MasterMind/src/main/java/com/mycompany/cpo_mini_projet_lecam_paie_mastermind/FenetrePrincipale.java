@@ -20,7 +20,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private PlateauDeJeu plateau;
     private ArrayList<Character> couleursDisponibles;
     private int tailleCombinaison;
-    
+    private Pion[] elements;
+
     public FenetrePrincipale() {
         initComponents();
         int nbLignes = 7;
@@ -41,8 +42,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 CompositionAlea.add(bouton_cellule2);
             }
         }
-        
-
     }
 
     /**
@@ -155,7 +154,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 100, 250));
 
-        AfficherCombinaisonSecrete.setText("jButton1");
+        AfficherCombinaisonSecrete.setText("Afficher Combinsaion");
         AfficherCombinaisonSecrete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AfficherCombinaisonSecreteActionPerformed(evt);
@@ -168,20 +167,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AfficherCombinaisonSecrete, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(AfficherCombinaisonSecrete, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AfficherCombinaisonSecrete, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(AfficherCombinaisonSecrete, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 100, 50));
 
-        Régles.setText("jButton1");
+        Régles.setText("Régles");
         Régles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RéglesActionPerformed(evt);
@@ -212,18 +210,26 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void RéglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RéglesActionPerformed
         // TODO add your handling code here:
+        System.out.println("Bienvenue dans le jeu MasterMind !");
+        System.out.println("Essayez de deviner la combinaison secrète.");
+        System.out.println("La combinaison contient 4 pions et utilise des couleurs suivantes : R (Rouge), B (Bleu), V (Vert), J (Jaune), W (Blanc), N (Noir).");
+        System.out.println("Pour chaque tentative, entrez 4 couleurs sous la forme d'une chaîne de caractères.");
+        System.out.println("Exemple de tentative : RVJN");
+        System.out.println("Vous avez 10 tentatives pour trouver la combinaison secrète.");
     }//GEN-LAST:event_RéglesActionPerformed
 
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
         // TODO add your handling code here:
-            
-            System.out.println("Bienvenue dans le jeu MasterMind !");
-            System.out.println("Essayez de deviner la combinaison secrète.");
-            System.out.println("La combinaison contient 4 pions et utilise des couleurs suivantes : R (Rouge), B (Bleu), V (Vert), J (Jaune), W (Blanc), N (Noir).");
-            System.out.println("Pour chaque tentative, entrez 4 couleurs sous la forme d'une chaîne de caractères.");
-            System.out.println("Exemple de tentative : RVJN");
-            System.out.println("Vous avez 10 tentatives pour trouver la combinaison secrète.");
-        
+        StringBuilder sb = new StringBuilder();
+        for (Pion p : elements) {
+            sb.append(p.getCouleur()).append(" ");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "FenetrePrincipale{" + "elements=" + elements + '}';
+    
     }//GEN-LAST:event_AfficherCombinaisonSecreteActionPerformed
 
     /**
