@@ -51,6 +51,8 @@ public class CPO_Mini_projet_LeCam_Paie_MasterMind {
            } else if (plateau.estDefaite()) {
                System.out.println("Désolé, vous avez épuisé vos tentatives. La combinaison secrète était : " 
                    + combinaisonSecrete.afficherCombinaisonLisible());
+               
+               
            }
        }
    }
