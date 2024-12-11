@@ -24,7 +24,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private Pion[] elements;
 
     public FenetrePrincipale() {
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
         int nbLignes = 10;
         int nbColonnes = 4;
@@ -81,7 +81,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
