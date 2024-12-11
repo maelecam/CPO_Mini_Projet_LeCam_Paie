@@ -210,6 +210,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void RéglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RéglesActionPerformed
         // TODO add your handling code here:
+        afficher_regles R = new afficher_regles();
+        R.show();
     }//GEN-LAST:event_RéglesActionPerformed
 
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
