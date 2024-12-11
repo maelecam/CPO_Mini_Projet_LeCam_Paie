@@ -24,7 +24,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     public FenetrePrincipale() {
         initComponents();
-        int nbLignes = 7;
+        int nbLignes = 10;
         int nbColonnes = 4;
         PanneauDeJeu.setLayout(new GridLayout(nbLignes, nbColonnes));
         for (int i = 0; i < nbLignes; i++) {
@@ -210,12 +210,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void RéglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RéglesActionPerformed
         // TODO add your handling code here:
-        System.out.println("Bienvenue dans le jeu MasterMind !");
-        System.out.println("Essayez de deviner la combinaison secrète.");
-        System.out.println("La combinaison contient 4 pions et utilise des couleurs suivantes : R (Rouge), B (Bleu), V (Vert), J (Jaune), W (Blanc), N (Noir).");
-        System.out.println("Pour chaque tentative, entrez 4 couleurs sous la forme d'une chaîne de caractères.");
-        System.out.println("Exemple de tentative : RVJN");
-        System.out.println("Vous avez 10 tentatives pour trouver la combinaison secrète.");
     }//GEN-LAST:event_RéglesActionPerformed
 
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
@@ -263,7 +257,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FenetrePrincipale().setVisible(true);
-
+                
             }
         });
 
