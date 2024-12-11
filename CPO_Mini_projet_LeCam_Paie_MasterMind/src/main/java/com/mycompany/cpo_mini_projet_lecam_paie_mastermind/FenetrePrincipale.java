@@ -7,6 +7,7 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
@@ -67,10 +68,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int nbLignes2 = 1;
         int nbColonnes2 = 4;
         CompositionAlea.setLayout(new GridLayout(nbLignes2, nbColonnes2));
+
+        Random random = new Random(); // Générateur de nombres aléatoires
+
         for (int i = 0; i < nbLignes2; i++) {
             for (int j = 0; j < nbColonnes2; j++) {
                 JButton bouton_cellule2 = new JButton();
-                CompositionAlea.add(bouton_cellule2);
+
+                // Sélectionner une couleur aléatoire
+                int couleurIndex = random.nextInt(couleurs.length);
+                bouton_cellule2.setBackground(couleurs[couleurIndex]);
+
+                CompositionAlea.add(bouton_cellule2); // Ajouter le bouton au panneau
             }
         }
     }
