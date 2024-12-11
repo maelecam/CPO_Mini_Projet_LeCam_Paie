@@ -7,6 +7,7 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /**
  *
@@ -23,6 +24,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private Pion[] elements;
 
     public FenetrePrincipale() {
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         initComponents();
         int nbLignes = 10;
         int nbColonnes = 4;
