@@ -27,6 +27,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private int tailleCombinaison;
     private Pion[] elements;
 
+     JButton [][] matBoutons = new JButton [10][4];
     public FenetrePrincipale() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
@@ -40,7 +41,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             for (int j = 0; j < nbColonnes; j++) {
                 JButton bouton_cellule = new JButton(); // Création d'un bouton
                 bouton_cellule.setBackground(Color.WHITE); // Couleur par défaut
-
+                matBoutons[i][j] = bouton_cellule;
+if (i<4) {
+matBoutons[i][0].setVisible(false);
+}
                 // Ajouter un ActionListener pour changer la couleur
                 bouton_cellule.addActionListener(e -> {
                     // Affichage d'un menu d'options
@@ -96,6 +100,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         PanneauDeJeu = new javax.swing.JPanel();
         CompositionAlea = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         Fond = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -142,15 +147,29 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         CompositionAlea.setBackground(new java.awt.Color(255, 255, 255));
         CompositionAlea.setForeground(new java.awt.Color(255, 0, 0));
 
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)), null));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 198, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 48, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout CompositionAleaLayout = new javax.swing.GroupLayout(CompositionAlea);
         CompositionAlea.setLayout(CompositionAleaLayout);
         CompositionAleaLayout.setHorizontalGroup(
             CompositionAleaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         CompositionAleaLayout.setVerticalGroup(
             CompositionAleaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(CompositionAlea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 200, 50));
@@ -322,5 +341,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
 }
