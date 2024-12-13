@@ -139,7 +139,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(PanneauDeJeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 200, 200));
 
-        CompositionAlea.setBackground(new java.awt.Color(255, 51, 0));
+        CompositionAlea.setBackground(new java.awt.Color(255, 255, 255));
         CompositionAlea.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout CompositionAleaLayout = new javax.swing.GroupLayout(CompositionAlea);
@@ -155,7 +155,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(CompositionAlea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 200, 50));
 
-        Fond.setBackground(new java.awt.Color(51, 255, 51));
+        Fond.setBackground(new java.awt.Color(255, 255, 153));
 
         jLabel1.setText("        MASTERMIND");
 
@@ -175,10 +175,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(Fond, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 200, 50));
 
-        jPanel1.setBackground(new java.awt.Color(255, 0, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        AfficherCombinaisonSecrete.setBackground(new java.awt.Color(255, 51, 0));
         AfficherCombinaisonSecrete.setText("Afficher Combinsaion");
         AfficherCombinaisonSecrete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +188,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 100, 250));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel3.setBackground(new java.awt.Color(204, 153, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
