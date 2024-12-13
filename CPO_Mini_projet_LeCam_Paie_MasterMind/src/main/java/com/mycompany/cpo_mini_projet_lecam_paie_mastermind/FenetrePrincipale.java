@@ -43,7 +43,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 JButton bouton_cellule = new JButton(); // Création d'un bouton
                 bouton_cellule.setBackground(Color.WHITE); // Couleur par défaut
                 matBoutons[i][j] = bouton_cellule;
-                if (i>= 1 || i < 2){
+                if ( i < 1){
                     if (j < 4){
                         matBoutons[i][j].setVisible(false);
                     }
