@@ -266,7 +266,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="R&#xe9;gles">
           <Properties>
-            <Property name="text" type="java.lang.String" value="R&#xe9;gles"/>
+            <Property name="text" type="java.lang.String" value="Regles"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="R&#xe9;glesActionPerformed"/>

@@ -225,7 +225,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 100, 50));
 
-        Régles.setText("Régles");
+        Régles.setText("Regles");
         Régles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RéglesActionPerformed(evt);
