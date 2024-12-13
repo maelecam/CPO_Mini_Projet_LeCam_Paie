@@ -4,40 +4,17 @@
  */
 package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
-import java.awt.GridLayout;
-import java.util.Random;
-import java.util.Scanner;
-import javax.swing.JButton;
-
 /**
  *
  * @author ravapaie
  */
-public class Afficher_reponse extends javax.swing.JFrame {
+public class Affiche_solution extends javax.swing.JFrame {
 
     /**
-     * Creates new form Afficher_reponse
+     * Creates new form Affiche_solution
      */
-    public Afficher_reponse() {
+    public Affiche_solution() {
         initComponents();
-        int nbLignes2 = 1;
-        int nbColonnes2 = 4;
-        CompositionAlea.setLayout(new GridLayout(nbLignes2, nbColonnes2));
-
-        Random random = new Random(); // Générateur de nombres aléatoires
-
-        for (int i = 0; i < nbLignes2; i++) {
-            for (int j = 0; j < nbColonnes2; j++) {
-                JButton bouton_cellule2 = new JButton();
-
-                // Sélectionner une couleur aléatoire
-                int couleurIndex = random.nextInt(couleurs.length);
-                bouton_cellule2.setBackground(couleurs[couleurIndex]);
-
-                CompositionAlea.add(bouton_cellule2); // Ajouter le bouton au panneau
-            }
-        }
-    }
     }
 
     /**
@@ -50,7 +27,6 @@ public class Afficher_reponse extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 153, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,26 +59,22 @@ public class Afficher_reponse extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Afficher_reponse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Affiche_solution.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Afficher_reponse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Affiche_solution.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Afficher_reponse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Affiche_solution.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Afficher_reponse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Affiche_solution.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Afficher_reponse().setVisible(true);
+                new Affiche_solution().setVisible(true);
             }
         });
-    }
-
-    private void initComponents() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
