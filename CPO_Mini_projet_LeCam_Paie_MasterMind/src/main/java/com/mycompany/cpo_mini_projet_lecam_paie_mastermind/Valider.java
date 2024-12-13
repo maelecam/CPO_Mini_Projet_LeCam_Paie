@@ -20,8 +20,7 @@ public class Valider extends javax.swing.JFrame {
         if (plateau.estVictoire()) {
             System.out.println("Félicitations, vous avez deviné la combinaison secrète !");
         } else if (plateau.estDefaite()) {
-            System.out.println("Désolé, vous avez épuisé vos tentatives. La combinaison secrète était : "
-                    + combinaisonSecrete.afficherCombinaisonLisible());
+            System.out.println("Désolé, vous avez épuisé vos tentatives. La combinaison secrète était : " + combinaisonSecrete.afficherCombinaisonLisible());
 
         }
     }
