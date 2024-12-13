@@ -27,7 +27,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private int tailleCombinaison;
     private Pion[] elements;
 
-     JButton [][] matBoutons = new JButton [10][4];
+    JButton[][] matBoutons = new JButton[10][4];
+
     public FenetrePrincipale() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
@@ -42,9 +43,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 JButton bouton_cellule = new JButton(); // Création d'un bouton
                 bouton_cellule.setBackground(Color.WHITE); // Couleur par défaut
                 matBoutons[i][j] = bouton_cellule;
-if (i<4) {
-matBoutons[i][0].setVisible(false);
-}
+                if (i < 4) {
+                    matBoutons[i][0].setVisible(false);
+                }
                 // Ajouter un ActionListener pour changer la couleur
                 bouton_cellule.addActionListener(e -> {
                     // Affichage d'un menu d'options
