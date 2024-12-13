@@ -73,7 +73,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int nbLignes2 = 1;
         int nbColonnes2 = 4;
         CompositionAlea.setLayout(new GridLayout(nbLignes2, nbColonnes2));
-
+        CompositionAlea.setVisible(false);
         Random random = new Random(); // Générateur de nombres aléatoires
 
         for (int i = 0; i < nbLignes2; i++) {
