@@ -35,7 +35,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int nbLignes = 10;
         int nbColonnes = 4;
         PanneauDeJeu.setLayout(new GridLayout(nbLignes, nbColonnes));
-        // Couleurs disponibles et leurs noms
+// Couleurs disponibles et leurs noms
         Color[] couleurs = {Color.RED, Color.YELLOW, Color.BLACK, Color.BLUE, Color.GREEN};
 
         for (int i = 0; i < nbLignes; i++) {
@@ -43,12 +43,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 JButton bouton_cellule = new JButton(); // Création d'un bouton
                 bouton_cellule.setBackground(Color.WHITE); // Couleur par défaut
                 matBoutons[i][j] = bouton_cellule;
-                if ( i < 1){
-                    if (j < 4){
-                        matBoutons[i][j].setVisible(false);
-                    }
-                }
-                
+
                 // Ajouter un ActionListener pour changer la couleur
                 bouton_cellule.addActionListener(e -> {
                     // Affichage d'un menu d'options
@@ -71,6 +66,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 });
 
                 PanneauDeJeu.add(bouton_cellule); // Ajouter le bouton au panneau
+            }
+        }
+
+// Ajout pour cacher toutes les lignes sauf la première
+        for (int i = 1; i < nbLignes; i++) { // Commence à 1 pour ne pas cacher la première ligne
+            for (int j = 0; j < nbColonnes; j++) {
+                matBoutons[i][j].setVisible(false); // Cache les boutons des autres lignes
             }
         }
         int nbLignes2 = 1;
@@ -227,6 +229,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 100, 250));
 
         jButton2.setText("Valider");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -295,6 +302,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         return "FenetrePrincipale{" + "elements=" + elements + '}';
 
     }//GEN-LAST:event_AfficherCombinaisonSecreteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Valider V = new Valider();
+        V.show();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
