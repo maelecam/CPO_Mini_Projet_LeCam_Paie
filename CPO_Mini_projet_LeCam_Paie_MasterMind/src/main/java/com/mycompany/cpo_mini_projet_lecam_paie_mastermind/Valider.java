@@ -21,11 +21,11 @@ public class Valider extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
     }
-    
+
 
     public void afficherResultats(int bienPlaces, int malPlaces) {
-        BienPlacés.setText("Nombre de Couleurs bien placés : " + bienPlaces);
-        Couleurs.setText("Nombre de bonne Couleurs : " + malPlaces);
+        Félicitation.setText("Nombre de Couleurs bien placés : " + bienPlaces);
+        Bravo.setText("Nombre de bonne Couleurs : " + malPlaces);
     }
 
     /**
@@ -38,17 +38,17 @@ public class Valider extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        BienPlacés = new javax.swing.JLabel();
-        Couleurs = new javax.swing.JLabel();
+        Félicitation = new javax.swing.JLabel();
+        Bravo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        BienPlacés.setBackground(new java.awt.Color(255, 255, 255));
-        BienPlacés.setText("Nombre de Couleurs bien placés : ");
+        Félicitation.setBackground(new java.awt.Color(255, 255, 255));
+        Félicitation.setText("Félicitation vous avez gagné");
 
-        Couleurs.setText("Nombre de bonne Couleurs : ");
+        Bravo.setText(" : ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -57,18 +57,18 @@ public class Valider extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BienPlacés)
-                    .addComponent(Couleurs))
-                .addContainerGap(141, Short.MAX_VALUE))
+                    .addComponent(Félicitation)
+                    .addComponent(Bravo))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
-                .addComponent(BienPlacés, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Félicitation, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Couleurs)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addComponent(Bravo)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -77,11 +77,15 @@ public class Valider extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -131,8 +135,8 @@ public class Valider extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BienPlacés;
-    private javax.swing.JLabel Couleurs;
+    private javax.swing.JLabel Bravo;
+    private javax.swing.JLabel Félicitation;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

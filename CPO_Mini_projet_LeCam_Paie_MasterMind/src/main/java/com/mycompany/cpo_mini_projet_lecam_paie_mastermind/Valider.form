@@ -23,15 +23,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -49,10 +54,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="BienPlacés" min="-2" max="-2" attributes="0"/>
-                      <Component id="Couleurs" min="-2" max="-2" attributes="0"/>
+                      <Component id="Félicitation" min="-2" max="-2" attributes="0"/>
+                      <Component id="Bravo" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="141" max="32767" attributes="0"/>
+                  <EmptySpace pref="151" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -60,26 +65,26 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                  <Component id="BienPlacés" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="Félicitation" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Couleurs" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="156" max="32767" attributes="0"/>
+                  <Component id="Bravo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="144" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="BienPlac&#xe9;s">
+        <Component class="javax.swing.JLabel" name="F&#xe9;licitation">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nombre de Couleurs bien plac&#xe9;s : "/>
+            <Property name="text" type="java.lang.String" value="F&#xe9;licitation vous avez gagn&#xe9;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="Couleurs">
+        <Component class="javax.swing.JLabel" name="Bravo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre de bonne Couleurs : "/>
+            <Property name="text" type="java.lang.String" value=" : "/>
           </Properties>
         </Component>
       </SubComponents>

@@ -405,8 +405,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //Valider V = new Valider();
-        //V.show();
 
         // Récupérer les couleurs sélectionnées par l'utilisateur
         Color[] couleursJoueur = recupererCouleursLigneActuelle();
@@ -436,6 +434,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         // Appeler la méthode pour afficher la ligne suivante
         afficherLigneSuivante();
+        if (bienPlaces == 4){
+            if (bonnesCouleurs == 4){
+                fenetreValider.setVisible(false);
+                Valider V = new Valider();
+                V.show();
+            }
+        }
     
     }//GEN-LAST:event_jButton2ActionPerformed
 
