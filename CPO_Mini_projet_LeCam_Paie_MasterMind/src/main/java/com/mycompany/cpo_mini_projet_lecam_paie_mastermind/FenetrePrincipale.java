@@ -7,10 +7,8 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -116,6 +114,55 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
         }
+    }
+
+    private Color[] recupererCouleursLigneActuelle() {
+        Color[] couleursJoueur = new Color[4];
+        for (int j = 0; j < 4; j++) {
+            couleursJoueur[j] = matBoutons[ligneActuelle][j].getBackground();
+        }
+        return couleursJoueur;
+    }
+
+    private Color[] recupererCouleursSecretes() {
+        Color[] couleursSecretes = new Color[4];
+        for (int j = 0; j < 4; j++) {
+            JButton bouton = (JButton) CompositionAlea.getComponent(j);
+            couleursSecretes[j] = bouton.getBackground();
+        }
+        return couleursSecretes;
+    }
+
+    private int[] comparerCombinaisons(Color[] joueur, Color[] secret) {
+        int bienPlaces = 0;
+        int malPlaces = 0;
+
+        boolean[] positionsDejaCompte = new boolean[4]; // Pour éviter les doublons
+        boolean[] couleursUtilisees = new boolean[4];
+
+        // Étape 1 : Compter les pions bien placés
+        for (int i = 0; i < 4; i++) {
+            if (joueur[i].equals(secret[i])) {
+                bienPlaces++;
+                positionsDejaCompte[i] = true;
+                couleursUtilisees[i] = true;
+            }
+        }
+
+        // Étape 2 : Compter les pions mal placés
+        for (int i = 0; i < 4; i++) {
+            if (!positionsDejaCompte[i]) {
+                for (int j = 0; j < 4; j++) {
+                    if (!couleursUtilisees[j] && joueur[i].equals(secret[j])) {
+                        malPlaces++;
+                        couleursUtilisees[j] = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return new int[]{bienPlaces, malPlaces};
     }
 
     /**
@@ -316,13 +363,31 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // TODO add your handling code here:
         Valider V = new Valider();
         V.show();
-        afficherLigneSuivante();
+
+        // Récupérer les couleurs sélectionnées par l'utilisateur
+        Color[] couleursJoueur = recupererCouleursLigneActuelle();
+
+        // Récupérer les couleurs de la combinaison secrète
+        Color[] couleursSecretes = recupererCouleursSecretes();
+
+        // Comparer les combinaisons
+        int[] resultat = comparerCombinaisons(couleursJoueur, couleursSecretes);
+        int bienPlaces = resultat[0];
+        int malPlaces = resultat[1];
+
+        // Créer et afficher la fenêtre Valider avec les résultats
+        Valider fenetreValider = new Valider();
+        fenetreValider.afficherResultats(bienPlaces, malPlaces);
+        fenetreValider.setVisible(true);
+
+        afficherLigneSuivante(); // Activer la ligne suivante
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -334,27 +399,23 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
