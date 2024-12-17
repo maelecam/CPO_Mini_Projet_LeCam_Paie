@@ -428,10 +428,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         // Afficher les résultats dans la fenêtre Valider
         fenetreValider.afficherResultats(bienPlaces, bonnesCouleurs);
-
+        
         // Rendre la fenêtre visible
         fenetreValider.setVisible(true);
-
+        
         // Appeler la méthode pour afficher la ligne suivante
         afficherLigneSuivante();
         if (bienPlaces == 4){
