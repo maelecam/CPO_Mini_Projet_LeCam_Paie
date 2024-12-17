@@ -165,6 +165,55 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         return new int[]{bienPlaces, malPlaces};
     }
 
+    public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
+        int bonnesCouleurs = 0;
+
+        // Créer un tableau pour compter la fréquence des couleurs dans la combinaison secrète
+        int[] frequencesSecretes = new int[6];  // Assumons qu'il y a 6 couleurs possibles (Rouge, Vert, Bleu, etc.)
+
+        // Remplir les fréquences de la combinaison secrète
+        for (Color couleur : couleursSecretes) {
+            if (couleur == Color.RED) {
+                frequencesSecretes[0]++;
+            } else if (couleur == Color.GREEN) {
+                frequencesSecretes[1]++;
+            } else if (couleur == Color.BLUE) {
+                frequencesSecretes[2]++;
+            } else if (couleur == Color.YELLOW) {
+                frequencesSecretes[3]++;
+            } else if (couleur == Color.BLACK) {
+                frequencesSecretes[4]++;
+            } else if (couleur == Color.WHITE) {
+                frequencesSecretes[5]++;
+            }
+        }
+
+        // Comparer les couleurs de l'utilisateur
+        for (Color couleur : couleursJoueur) {
+            if (couleur == Color.RED && frequencesSecretes[0] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[0]--;  // Décrémenter la fréquence pour éviter de compter plusieurs fois la même couleur
+            } else if (couleur == Color.GREEN && frequencesSecretes[1] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[1]--;
+            } else if (couleur == Color.BLUE && frequencesSecretes[2] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[2]--;
+            } else if (couleur == Color.YELLOW && frequencesSecretes[3] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[3]--;
+            } else if (couleur == Color.BLACK && frequencesSecretes[4] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[4]--;
+            } else if (couleur == Color.WHITE && frequencesSecretes[5] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[5]--;
+            }
+        }
+
+        return bonnesCouleurs;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -358,8 +407,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Valider V = new Valider();
-        V.show();
+        //Valider V = new Valider();
+        //V.show();
 
         // Récupérer les couleurs sélectionnées par l'utilisateur
         Color[] couleursJoueur = recupererCouleursLigneActuelle();
@@ -367,24 +416,35 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // Récupérer les couleurs de la combinaison secrète
         Color[] couleursSecretes = recupererCouleursSecretes();
 
-        // Comparer les combinaisons
-        int[] resultat = comparerCombinaisons(couleursJoueur, couleursSecretes);
-        int bienPlaces = resultat[0];
-        int malPlaces = resultat[1];
+        // Calculer le nombre de bonnes couleurs (même couleur mais pas forcément à la bonne position)
+        int bonnesCouleurs = calculerBonnesCouleurs(couleursJoueur, couleursSecretes);
 
-        // Créer et afficher la fenêtre Valider avec les résultats
+        // Calculer le nombre de couleurs bien placées (à la bonne position)
+        int bienPlaces = 0;
+        for (int i = 0; i < couleursJoueur.length; i++) {
+            if (couleursJoueur[i].equals(couleursSecretes[i])) {
+                bienPlaces++;
+            }
+        }
+
+        // Créer une instance de la fenêtre Valider pour afficher les résultats
         Valider fenetreValider = new Valider();
-        fenetreValider.afficherResultats(bienPlaces, malPlaces);
+
+        // Afficher les résultats dans la fenêtre Valider
+        fenetreValider.afficherResultats(bienPlaces, bonnesCouleurs);
+
+        // Rendre la fenêtre visible
         fenetreValider.setVisible(true);
 
-        afficherLigneSuivante(); // Activer la ligne suivante
-
+        // Appeler la méthode pour afficher la ligne suivante
+        afficherLigneSuivante();
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -396,23 +456,27 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-                }
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
 
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
 
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
