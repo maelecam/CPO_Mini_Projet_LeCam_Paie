@@ -7,6 +7,7 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
@@ -29,7 +30,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private int ligneActuelle = 0; // Garde une trace de la ligne en cours
     private Partie partie;
     JButton[][] matBoutons = new JButton[10][4];
-    
+
     public FenetrePrincipale() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
@@ -81,7 +82,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         CompositionAlea.setLayout(new GridLayout(nbLignes2, nbColonnes2));
         CompositionAlea.setVisible(false);
         Random random = new Random(); // Générateur de nombres aléatoires
-
         for (int i = 0; i < nbLignes2; i++) {
             for (int j = 0; j < nbColonnes2; j++) {
                 JButton bouton_cellule2 = new JButton();
@@ -319,10 +319,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         afficherLigneSuivante();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -333,16 +333,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
