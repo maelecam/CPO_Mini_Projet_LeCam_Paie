@@ -18,12 +18,6 @@ public class afficher_regles extends javax.swing.JFrame {
     public afficher_regles() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        System.out.println("Bienvenue dans le jeu MasterMind !");
-        System.out.println("Essayez de deviner la combinaison secrète.");
-        System.out.println("La combinaison contient 4 pions et utilise des couleurs suivantes : R (Rouge), B (Bleu), V (Vert), J (Jaune), W (Blanc), N (Noir).");
-        System.out.println("Pour chaque tentative, entrez 4 couleurs sous la forme d'une chaîne de caractères.");
-        System.out.println("Exemple de tentative : RVJN");
-        System.out.println("Vous avez 10 tentatives pour trouver la combinaison secrète.");
     }
     /**
      * This method is called from within the constructor to initialize the form.
