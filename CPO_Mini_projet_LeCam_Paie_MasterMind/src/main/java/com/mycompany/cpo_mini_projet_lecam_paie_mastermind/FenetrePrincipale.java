@@ -347,10 +347,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
         // TODO add your handling code here:
-        StringBuilder sb = new StringBuilder();
-        for (Pion p : elements) {
-            sb.append(p.getCouleur()).append(" ");
-        }
+        CompositionAlea.setVisible(true);
     }
 
     @Override
