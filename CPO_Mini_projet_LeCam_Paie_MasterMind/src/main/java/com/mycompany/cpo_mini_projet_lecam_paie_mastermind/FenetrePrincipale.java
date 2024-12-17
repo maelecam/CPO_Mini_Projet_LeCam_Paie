@@ -164,7 +164,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         return new int[]{bienPlaces, malPlaces};
     }
-
     public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
         int bonnesCouleurs = 0;
 
@@ -210,7 +209,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 frequencesSecretes[5]--;
             }
         }
-
         return bonnesCouleurs;
     }
 
