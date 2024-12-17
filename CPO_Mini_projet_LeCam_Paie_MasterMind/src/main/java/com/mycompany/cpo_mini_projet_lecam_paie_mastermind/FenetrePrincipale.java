@@ -26,9 +26,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private ArrayList<Character> couleursDisponibles;
     private int tailleCombinaison;
     private Pion[] elements;
-
+    private int ligneActuelle = 0; // Garde une trace de la ligne en cours
+    private Partie partie;
     JButton[][] matBoutons = new JButton[10][4];
-
+    
     public FenetrePrincipale() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
@@ -91,6 +92,29 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
                 CompositionAlea.add(bouton_cellule2); // Ajouter le bouton au panneau
             }
+        }
+    }
+
+    private void afficherLigneSuivante() {
+        int nbLignes = matBoutons.length; // Nombre total de lignes
+        int nbColonnes = matBoutons[0].length;
+
+        // Désactiver les boutons de la ligne actuelle pour les rendre non modifiables
+        for (int j = 0; j < nbColonnes; j++) {
+            matBoutons[ligneActuelle][j].setEnabled(false);
+        }
+
+        // Si on n'a pas encore atteint la dernière ligne
+        if (ligneActuelle < nbLignes - 1) {
+            ligneActuelle++; // Passer à la ligne suivante
+
+            // Rendre la nouvelle ligne visible et modifiable
+            for (int j = 0; j < nbColonnes; j++) {
+                matBoutons[ligneActuelle][j].setVisible(true);
+                matBoutons[ligneActuelle][j].setEnabled(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
         }
     }
 
@@ -292,6 +316,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // TODO add your handling code here:
         Valider V = new Valider();
         V.show();
+        afficherLigneSuivante();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
