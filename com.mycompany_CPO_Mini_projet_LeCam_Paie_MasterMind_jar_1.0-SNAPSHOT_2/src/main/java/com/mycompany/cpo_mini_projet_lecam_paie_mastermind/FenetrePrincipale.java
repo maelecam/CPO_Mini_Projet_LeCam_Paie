@@ -87,8 +87,39 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 // Sélectionner une couleur aléatoire
                 int couleurIndex = random.nextInt(couleurs.length);
                 bouton_cellule2.setBackground(couleurs[couleurIndex]);
-
                 CompositionAlea.add(bouton_cellule2); // Ajouter le bouton au panneau
+            }
+        }
+    }
+
+    private void GrilleVerfierBienPlacés() {
+        int nbLignes3 = 2;
+        int nbColonnes3 = 2;
+        
+        CouleursBienPlaces.setLayout(new GridLayout(nbLignes3, nbColonnes3));
+        CouleursBienPlaces.setVisible(false);
+        for (int i = 0; i < nbLignes3; i++) {
+            for (int j = 0; j < nbColonnes3; j++) {
+                JButton boutton_BienPlacés = new JButton();
+                boutton_BienPlacés.setBackground(Color.WHITE);
+                matBoutons[i][j] = boutton_BienPlacés;
+                CouleursBienPlaces.add(boutton_BienPlacés);
+                
+            }
+        }
+    }
+
+    private void GrilleVerifierBonneCOuleurs() {
+        int nbLignes3 = 1;
+        int nbColonnes3 = 2;
+        CouleursBienPlaces.setLayout(new GridLayout(nbLignes3, nbColonnes3));
+        CouleursBienPlaces.setVisible(false);
+        for (int i = 0; i < nbLignes3; i++) {
+            for (int j = 0; j < nbColonnes3; j++) {
+                JButton boutton_BienPlacés = new JButton();
+                boutton_BienPlacés.setBackground(Color.WHITE);
+                matBoutons[i][j] = boutton_BienPlacés;
+                CouleursBienPlaces.add(boutton_BienPlacés);
             }
         }
     }
@@ -113,9 +144,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
-            
+
         }
     }
+
     private Color[] recupererCouleursLigneActuelle() {
         Color[] couleursJoueur = new Color[4];
         for (int j = 0; j < 4; j++) {
@@ -162,6 +194,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         return new int[]{bienPlaces, malPlaces};
     }
+
     public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
         int bonnesCouleurs = 0;
 
@@ -226,11 +259,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         AfficherCombinaisonSecrete = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        CouleursBienPlaces = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         Régles = new javax.swing.JButton();
+        BonnesCouleurs = new javax.swing.JPanel();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 255));
 
@@ -310,24 +344,26 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 AfficherCombinaisonSecreteActionPerformed(evt);
             }
         });
-        jPanel1.add(AfficherCombinaisonSecrete, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 80, 40));
+        jPanel1.add(AfficherCombinaisonSecrete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 70, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 100, 250));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 100, 50));
 
-        jPanel3.setBackground(new java.awt.Color(204, 153, 255));
+        CouleursBienPlaces.setBackground(new java.awt.Color(204, 153, 255));
+        CouleursBienPlaces.setToolTipText("CouleursBienPlacés");
+        CouleursBienPlaces.setAutoscrolls(true);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout CouleursBienPlacesLayout = new javax.swing.GroupLayout(CouleursBienPlaces);
+        CouleursBienPlaces.setLayout(CouleursBienPlacesLayout);
+        CouleursBienPlacesLayout.setHorizontalGroup(
+            CouleursBienPlacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        CouleursBienPlacesLayout.setVerticalGroup(
+            CouleursBienPlacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 250, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 100, 250));
+        getContentPane().add(CouleursBienPlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 100, 250));
 
         jButton2.setText("Valider");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -381,6 +417,22 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
 
+        BonnesCouleurs.setBackground(new java.awt.Color(255, 204, 204));
+        BonnesCouleurs.setToolTipText("");
+
+        javax.swing.GroupLayout BonnesCouleursLayout = new javax.swing.GroupLayout(BonnesCouleurs);
+        BonnesCouleurs.setLayout(BonnesCouleursLayout);
+        BonnesCouleursLayout.setHorizontalGroup(
+            BonnesCouleursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        BonnesCouleursLayout.setVerticalGroup(
+            BonnesCouleursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(BonnesCouleurs, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, 200));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -426,14 +478,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         // Afficher les résultats dans la fenêtre Valider
         fenetreValider.afficherResultats(bienPlaces, bonnesCouleurs);
-        
+
         // Rendre la fenêtre visible
         fenetreValider.setVisible(true);
-        
+
         // Appeler la méthode pour afficher la ligne suivante
         afficherLigneSuivante();
-        if (bienPlaces == 4){
-            if (bonnesCouleurs == 4){
+        if (bienPlaces == 4) {
+            if (bonnesCouleurs == 4) {
                 fenetreValider.setVisible(false);
                 Valider V = new Valider();
                 V.show();
@@ -442,10 +494,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -457,27 +509,23 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -492,7 +540,9 @@ public static void main(String args[]) {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AfficherCombinaisonSecrete;
+    private javax.swing.JPanel BonnesCouleurs;
     private javax.swing.JPanel CompositionAlea;
+    private javax.swing.JPanel CouleursBienPlaces;
     private javax.swing.JPanel Fond;
     private javax.swing.JPanel PanneauDeJeu;
     private javax.swing.JButton Régles;
@@ -500,7 +550,6 @@ public static void main(String args[]) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
