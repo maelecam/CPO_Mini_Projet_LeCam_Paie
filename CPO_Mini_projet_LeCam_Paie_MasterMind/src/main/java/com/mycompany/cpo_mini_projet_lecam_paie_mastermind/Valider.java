@@ -15,7 +15,7 @@ public class Valider extends javax.swing.JFrame {
     private Pion[] elements;
     private Combinaison combinaisonUtilisateur;
     private Combinaison combinaisonSecrete;
-
+    
     public Valider() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -27,6 +27,7 @@ public class Valider extends javax.swing.JFrame {
         Félicitation.setText("Nombre de Couleurs bien placés : " + bienPlaces);
         Bravo.setText("Nombre de bonne Couleurs : " + malPlaces);
     }
+    
     
 
     /**
