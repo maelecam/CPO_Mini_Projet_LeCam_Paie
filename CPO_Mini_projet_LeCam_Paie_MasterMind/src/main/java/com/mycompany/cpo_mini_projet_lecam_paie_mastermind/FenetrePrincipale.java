@@ -113,9 +113,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
+            
         }
     }
-
     private Color[] recupererCouleursLigneActuelle() {
         Color[] couleursJoueur = new Color[4];
         for (int j = 0; j < 4; j++) {
@@ -420,6 +420,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 bienPlaces++;
             }
         }
+
         // Créer une instance de la fenêtre Valider pour afficher les résultats
         Valider fenetreValider = new Valider();
 
