@@ -52,6 +52,30 @@ public class CPO_Mini_projet_LeCam_Paie_MasterMind {
                System.out.println("Désolé, vous avez épuisé vos tentatives. La combinaison secrète était : " 
                    + combinaisonSecrete.afficherCombinaisonLisible());              
            }
+         
+// suite 
+        boolean continuerJeu = true;
+        
+        while (continuerJeu) {
+            Partie(scanner);
+            
+            System.out.println("\nVoulez-vous rejouer ? (O/N)");
+            String reponse = scanner.nextLine().toUpperCase();
+            
+            while (!reponse.equals("O") && !reponse.equals("N")) {
+                System.out.println("Veuillez répondre par O (Oui) ou N (Non)");
+                reponse = scanner.nextLine().toUpperCase();
+            }
+            
+            if (reponse.equals("N")) {
+                continuerJeu = false;
+                System.out.println("Merci d'avoir joué ! Au revoir !");
+            }
+        }
        }
    }
+
+    private static void Partie(Scanner scanner) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

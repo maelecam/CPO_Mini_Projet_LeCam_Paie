@@ -27,6 +27,7 @@ public class Valider extends javax.swing.JFrame {
         Félicitation.setText("Nombre de Couleurs bien placés : " + bienPlaces);
         Bravo.setText("Nombre de bonne Couleurs : " + malPlaces);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
