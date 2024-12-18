@@ -148,7 +148,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 couleursUtilisees[i] = true;
             }
         }
-
         // Étape 2 : Compter les pions mal placés
         for (int i = 0; i < 4; i++) {
             if (!positionsDejaCompte[i]) {
@@ -161,7 +160,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 }
             }
         }
-
         return new int[]{bienPlaces, malPlaces};
     }
     public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
@@ -422,7 +420,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 bienPlaces++;
             }
         }
-
         // Créer une instance de la fenêtre Valider pour afficher les résultats
         Valider fenetreValider = new Valider();
 
@@ -442,7 +439,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 this.dispose();
             }
         }
-    
     }//GEN-LAST:event_jButton2ActionPerformed
 
 /**
