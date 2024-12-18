@@ -74,7 +74,7 @@ public class CPO_Mini_projet_LeCam_Paie_MasterMind {
         }
        }
    }
-//////////////////
+////////////////// FINALISATION 18 DÉCEMBRE DU MODE AVANCÉ 
    
     private static void Partie(Scanner scanner) {
     System.out.println("\n--- MODES DE JEU ---");
