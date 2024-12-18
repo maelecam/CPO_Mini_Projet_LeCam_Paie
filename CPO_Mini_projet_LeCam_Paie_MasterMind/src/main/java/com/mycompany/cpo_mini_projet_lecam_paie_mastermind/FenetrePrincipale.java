@@ -9,7 +9,6 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -26,7 +25,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private ArrayList<Character> couleursDisponibles;
     private int tailleCombinaison;
     private Pion[] elements;
-
+    private int ligneActuelle = 0; // Garde une trace de la ligne en cours
+    private Partie partie;
     JButton[][] matBoutons = new JButton[10][4];
 
     public FenetrePrincipale() {
@@ -35,7 +35,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int nbLignes = 10;
         int nbColonnes = 4;
         PanneauDeJeu.setLayout(new GridLayout(nbLignes, nbColonnes));
-        // Couleurs disponibles et leurs noms
+// Couleurs disponibles et leurs noms
         Color[] couleurs = {Color.RED, Color.YELLOW, Color.BLACK, Color.BLUE, Color.GREEN};
 
         for (int i = 0; i < nbLignes; i++) {
@@ -43,9 +43,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 JButton bouton_cellule = new JButton(); // Création d'un bouton
                 bouton_cellule.setBackground(Color.WHITE); // Couleur par défaut
                 matBoutons[i][j] = bouton_cellule;
-                if (i < 4) {
-                    matBoutons[i][0].setVisible(false);
-                }
+
                 // Ajouter un ActionListener pour changer la couleur
                 bouton_cellule.addActionListener(e -> {
                     // Affichage d'un menu d'options
@@ -70,12 +68,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 PanneauDeJeu.add(bouton_cellule); // Ajouter le bouton au panneau
             }
         }
+
+// Ajout pour cacher toutes les lignes sauf la première
+        for (int i = 1; i < nbLignes; i++) { // Commence à 1 pour ne pas cacher la première ligne
+            for (int j = 0; j < nbColonnes; j++) {
+                matBoutons[i][j].setVisible(false); // Cache les boutons des autres lignes
+            }
+        }
         int nbLignes2 = 1;
         int nbColonnes2 = 4;
         CompositionAlea.setLayout(new GridLayout(nbLignes2, nbColonnes2));
         CompositionAlea.setVisible(false);
         Random random = new Random(); // Générateur de nombres aléatoires
-
         for (int i = 0; i < nbLignes2; i++) {
             for (int j = 0; j < nbColonnes2; j++) {
                 JButton bouton_cellule2 = new JButton();
@@ -87,6 +91,123 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 CompositionAlea.add(bouton_cellule2); // Ajouter le bouton au panneau
             }
         }
+    }
+
+    private void afficherLigneSuivante() {
+        int nbLignes = matBoutons.length; // Nombre total de lignes
+        int nbColonnes = matBoutons[0].length;
+
+        // Désactiver les boutons de la ligne actuelle pour les rendre non modifiables
+        for (int j = 0; j < nbColonnes; j++) {
+            matBoutons[ligneActuelle][j].setEnabled(false);
+        }
+
+        // Si on n'a pas encore atteint la dernière ligne
+        if (ligneActuelle < nbLignes - 1) {
+            ligneActuelle++; // Passer à la ligne suivante
+
+            // Rendre la nouvelle ligne visible et modifiable
+            for (int j = 0; j < nbColonnes; j++) {
+                matBoutons[ligneActuelle][j].setVisible(true);
+                matBoutons[ligneActuelle][j].setEnabled(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
+        }
+    }
+
+    private Color[] recupererCouleursLigneActuelle() {
+        Color[] couleursJoueur = new Color[4];
+        for (int j = 0; j < 4; j++) {
+            couleursJoueur[j] = matBoutons[ligneActuelle][j].getBackground();
+        }
+        return couleursJoueur;
+    }
+
+    private Color[] recupererCouleursSecretes() {
+        Color[] couleursSecretes = new Color[4];
+        for (int j = 0; j < 4; j++) {
+            JButton bouton = (JButton) CompositionAlea.getComponent(j);
+            couleursSecretes[j] = bouton.getBackground();
+        }
+        return couleursSecretes;
+    }
+
+    private int[] comparerCombinaisons(Color[] joueur, Color[] secret) {
+        int bienPlaces = 0;
+        int malPlaces = 0;
+
+        boolean[] positionsDejaCompte = new boolean[4]; // Pour éviter les doublons
+        boolean[] couleursUtilisees = new boolean[4];
+
+        // Étape 1 : Compter les pions bien placés
+        for (int i = 0; i < 4; i++) {
+            if (joueur[i].equals(secret[i])) {
+                bienPlaces++;
+                positionsDejaCompte[i] = true;
+                couleursUtilisees[i] = true;
+            }
+        }
+        // Étape 2 : Compter les pions mal placés
+        for (int i = 0; i < 4; i++) {
+            if (!positionsDejaCompte[i]) {
+                for (int j = 0; j < 4; j++) {
+                    if (!couleursUtilisees[j] && joueur[i].equals(secret[j])) {
+                        malPlaces++;
+                        couleursUtilisees[j] = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return new int[]{bienPlaces, malPlaces};
+    }
+    public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
+        int bonnesCouleurs = 0;
+
+        // Créer un tableau pour compter la fréquence des couleurs dans la combinaison secrète
+        int[] frequencesSecretes = new int[6];  // Assumons qu'il y a 6 couleurs possibles (Rouge, Vert, Bleu, etc.)
+
+        // Remplir les fréquences de la combinaison secrète
+        for (Color couleur : couleursSecretes) {
+            if (couleur == Color.RED) {
+                frequencesSecretes[0]++;
+            } else if (couleur == Color.GREEN) {
+                frequencesSecretes[1]++;
+            } else if (couleur == Color.BLUE) {
+                frequencesSecretes[2]++;
+            } else if (couleur == Color.YELLOW) {
+                frequencesSecretes[3]++;
+            } else if (couleur == Color.BLACK) {
+                frequencesSecretes[4]++;
+            } else if (couleur == Color.WHITE) {
+                frequencesSecretes[5]++;
+            }
+        }
+
+        // Comparer les couleurs de l'utilisateur
+        for (Color couleur : couleursJoueur) {
+            if (couleur == Color.RED && frequencesSecretes[0] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[0]--;  // Décrémenter la fréquence pour éviter de compter plusieurs fois la même couleur
+            } else if (couleur == Color.GREEN && frequencesSecretes[1] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[1]--;
+            } else if (couleur == Color.BLUE && frequencesSecretes[2] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[2]--;
+            } else if (couleur == Color.YELLOW && frequencesSecretes[3] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[3]--;
+            } else if (couleur == Color.BLACK && frequencesSecretes[4] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[4]--;
+            } else if (couleur == Color.WHITE && frequencesSecretes[5] > 0) {
+                bonnesCouleurs++;
+                frequencesSecretes[5]--;
+            }
+        }
+        return bonnesCouleurs;
     }
 
     /**
@@ -101,7 +222,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         PanneauDeJeu = new javax.swing.JPanel();
         CompositionAlea = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
         Fond = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -148,29 +268,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         CompositionAlea.setBackground(new java.awt.Color(255, 255, 255));
         CompositionAlea.setForeground(new java.awt.Color(255, 0, 0));
 
-        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)), null));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 198, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 48, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout CompositionAleaLayout = new javax.swing.GroupLayout(CompositionAlea);
         CompositionAlea.setLayout(CompositionAleaLayout);
         CompositionAleaLayout.setHorizontalGroup(
             CompositionAleaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
         CompositionAleaLayout.setVerticalGroup(
             CompositionAleaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(CompositionAlea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 200, 50));
@@ -224,6 +330,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 100, 250));
 
         jButton2.setText("Valider");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -281,10 +392,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
         // TODO add your handling code here:
-        StringBuilder sb = new StringBuilder();
-        for (Pion p : elements) {
-            sb.append(p.getCouleur()).append(" ");
-        }
+        CompositionAlea.setVisible(true);
     }
 
     @Override
@@ -293,10 +401,50 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AfficherCombinaisonSecreteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        // Récupérer les couleurs sélectionnées par l'utilisateur
+        Color[] couleursJoueur = recupererCouleursLigneActuelle();
+
+        // Récupérer les couleurs de la combinaison secrète
+        Color[] couleursSecretes = recupererCouleursSecretes();
+
+        // Calculer le nombre de bonnes couleurs (même couleur mais pas forcément à la bonne position)
+        int bonnesCouleurs = calculerBonnesCouleurs(couleursJoueur, couleursSecretes);
+
+        // Calculer le nombre de couleurs bien placées (à la bonne position)
+        int bienPlaces = 0;
+        for (int i = 0; i < couleursJoueur.length; i++) {
+            if (couleursJoueur[i].equals(couleursSecretes[i])) {
+                bienPlaces++;
+            }
+        }
+        // Créer une instance de la fenêtre Valider pour afficher les résultats
+        Valider fenetreValider = new Valider();
+
+        // Afficher les résultats dans la fenêtre Valider
+        fenetreValider.afficherResultats(bienPlaces, bonnesCouleurs);
+        
+        // Rendre la fenêtre visible
+        fenetreValider.setVisible(true);
+        
+        // Appeler la méthode pour afficher la ligne suivante
+        afficherLigneSuivante();
+        if (bienPlaces == 4){
+            if (bonnesCouleurs == 4){
+                fenetreValider.setVisible(false);
+                Valider V = new Valider();
+                V.show();
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -307,16 +455,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenetrePrincipale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FenetrePrincipale.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -342,6 +502,5 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
 }
