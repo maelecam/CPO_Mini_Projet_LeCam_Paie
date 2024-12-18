@@ -116,7 +116,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             
         }
     }
-
     private Color[] recupererCouleursLigneActuelle() {
         Color[] couleursJoueur = new Color[4];
         for (int j = 0; j < 4; j++) {
