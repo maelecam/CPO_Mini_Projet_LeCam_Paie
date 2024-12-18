@@ -420,6 +420,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 bienPlaces++;
             }
         }
+
         // Créer une instance de la fenêtre Valider pour afficher les résultats
         Valider fenetreValider = new Valider();
 
