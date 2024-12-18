@@ -439,6 +439,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 fenetreValider.setVisible(false);
                 Valider V = new Valider();
                 V.show();
+                this.dispose();
             }
         }
     
