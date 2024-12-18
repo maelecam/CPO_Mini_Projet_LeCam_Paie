@@ -7,7 +7,7 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
 /**
  *
- * @author 33604
+ * V0 du jeu
  */
 import java.util.Scanner;
 
