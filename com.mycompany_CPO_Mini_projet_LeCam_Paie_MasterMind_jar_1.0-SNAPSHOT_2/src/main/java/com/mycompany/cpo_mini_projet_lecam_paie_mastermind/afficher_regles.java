@@ -152,12 +152,10 @@ public class afficher_regles extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
-        FenetrePrincipale J = new FenetrePrincipale();
-        J.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }
 
     /**
      * @param args the command line arguments
