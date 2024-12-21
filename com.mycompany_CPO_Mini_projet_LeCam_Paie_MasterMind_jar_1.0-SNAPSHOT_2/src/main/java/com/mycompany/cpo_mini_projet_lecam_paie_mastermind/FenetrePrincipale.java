@@ -40,6 +40,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
+
                 JButton bouton_cellule = new JButton(); // Création d'un bouton
                 bouton_cellule.setBackground(Color.WHITE); // Couleur par défaut
                 matBoutons[i][j] = bouton_cellule;
@@ -95,7 +96,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void GrilleVerfierBienPlacés() {
         int nbLignes3 = 2;
         int nbColonnes3 = 2;
-        
+
         CouleursBienPlaces.setLayout(new GridLayout(nbLignes3, nbColonnes3));
         CouleursBienPlaces.setVisible(false);
         for (int i = 0; i < nbLignes3; i++) {
@@ -104,7 +105,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 boutton_BienPlacés.setBackground(Color.WHITE);
                 matBoutons[i][j] = boutton_BienPlacés;
                 CouleursBienPlaces.add(boutton_BienPlacés);
-                
+
             }
         }
     }
@@ -125,26 +126,32 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }
 
     private void afficherLigneSuivante() {
-        int nbLignes = matBoutons.length; // Nombre total de lignes
+        int nbLignes = matBoutons.length;
         int nbColonnes = matBoutons[0].length;
 
-        // Désactiver les boutons de la ligne actuelle pour les rendre non modifiables
+        // Désactiver les boutons de la ligne actuelle
         for (int j = 0; j < nbColonnes; j++) {
-            matBoutons[ligneActuelle][j].setEnabled(false);
+            JButton bouton = matBoutons[ligneActuelle][j];
+            bouton.setEnabled(false);
+            Color couleurActuelle = bouton.getBackground();
+            bouton.setBackground(couleurActuelle);
+            bouton.setOpaque(true);
+            bouton.setContentAreaFilled(true);
         }
 
         // Si on n'a pas encore atteint la dernière ligne
         if (ligneActuelle < nbLignes - 1) {
-            ligneActuelle++; // Passer à la ligne suivante
-
+            ligneActuelle++;
             // Rendre la nouvelle ligne visible et modifiable
             for (int j = 0; j < nbColonnes; j++) {
-                matBoutons[ligneActuelle][j].setVisible(true);
-                matBoutons[ligneActuelle][j].setEnabled(true);
+                JButton bouton = matBoutons[ligneActuelle][j];
+                bouton.setVisible(true);
+                bouton.setEnabled(true);
+                bouton.setOpaque(true);
+                bouton.setContentAreaFilled(true);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
-
         }
     }
 
