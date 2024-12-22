@@ -20,7 +20,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      * Creates new form FenetrePrincipale
      */
     private Pion[] elements;
-    private int ligneActuelle = 0; // Garde une trace de la ligne en cours
+    private int ligneActuelle = 0; 
     JButton[][] matBoutons = new JButton[10][4];
 
     public FenetrePrincipale() {
@@ -76,7 +76,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         }
     }
-
     private void afficherLigneSuivante() {
         int nbLignes = matBoutons.length;
         int nbColonnes = matBoutons[0].length;
@@ -101,7 +100,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
         }
     }
-
     private Color[] recupererCouleursLigneActuelle() {
         Color[] couleursJoueur = new Color[4];
         for (int j = 0; j < 4; j++) {
@@ -109,7 +107,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         return couleursJoueur;
     }
-
     private Color[] recupererCouleursSecretes() {
         Color[] couleursSecretes = new Color[4];
         for (int j = 0; j < 4; j++) {
@@ -118,14 +115,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         return couleursSecretes;
     }
-
     public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
         int bonnesCouleurs = 0;
-
-        // Créer un tableau pour compter la fréquence des couleurs dans la combinaison secrète
-        int[] frequencesSecretes = new int[6];  // Assumons qu'il y a 6 couleurs possibles (Rouge, Vert, Bleu, etc.)
-
-        // Remplir les fréquences de la combinaison secrète
+        int[] frequencesSecretes = new int[6];  
         for (Color couleur : couleursSecretes) {
             if (couleur == Color.RED) {
                 frequencesSecretes[0]++;
@@ -141,12 +133,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 frequencesSecretes[5]++;
             }
         }
-
-        // Comparer les couleurs de l'utilisateur
         for (Color couleur : couleursJoueur) {
             if (couleur == Color.RED && frequencesSecretes[0] > 0) {
                 bonnesCouleurs++;
-                frequencesSecretes[0]--;  // Décrémenter la fréquence pour éviter de compter plusieurs fois la même couleur
+                frequencesSecretes[0]--; 
             } else if (couleur == Color.GREEN && frequencesSecretes[1] > 0) {
                 bonnesCouleurs++;
                 frequencesSecretes[1]--;
@@ -425,14 +415,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Color[] couleursJoueur = recupererCouleursLigneActuelle();
-
-        // Récupérer les couleurs de la combinaison secrète
         Color[] couleursSecretes = recupererCouleursSecretes();
-
-        // Calculer le nombre de bonnes couleurs (même couleur mais pas forcément à la bonne position)
         int bonnesCouleurs = calculerBonnesCouleurs(couleursJoueur, couleursSecretes);
-
-        // Calculer le nombre de couleurs bien placées (à la bonne position)
         int bienPlaces = 0;
         for (int i = 0; i < couleursJoueur.length; i++) {
             if (couleursJoueur[i].equals(couleursSecretes[i])) {
@@ -441,7 +425,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         CouleursBienPlacés.setText("placés : " + bienPlaces);
         CouleursPrésentes.setText(": " + bonnesCouleurs);
-        // Appeler la méthode pour afficher la ligne suivante
         afficherLigneSuivante();
         if (bienPlaces == 4) {
             if (bonnesCouleurs == 4) {
