@@ -106,6 +106,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
             dispose();
+            Menu M = new Menu();
+            M.show();
         }
     }
     private Color[] recupererCouleursLigneActuelle() {
