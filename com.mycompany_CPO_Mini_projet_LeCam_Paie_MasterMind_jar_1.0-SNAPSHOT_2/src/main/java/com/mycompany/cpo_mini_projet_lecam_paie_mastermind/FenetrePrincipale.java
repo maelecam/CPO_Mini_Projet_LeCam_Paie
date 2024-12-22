@@ -249,6 +249,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         return bonnesCouleurs;
     }
+    public void afficherResultats(int bienPlaces, int malPlaces) {
+        CouleursBienPlacés.setText("Nombre de Couleurs bien placés : " + bienPlaces);
+        CouleursPrésentes.setText("Nombre de bonne Couleurs : " + malPlaces);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -267,11 +271,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         AfficherCombinaisonSecrete = new javax.swing.JButton();
         CouleursBienPlaces = new javax.swing.JPanel();
+        Bravo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        CouleursBienPlacés = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         Régles = new javax.swing.JButton();
         BonnesCouleurs = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        CouleursPrésentes = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 255));
 
@@ -290,7 +300,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PanneauDeJeu.setBackground(new java.awt.Color(242, 242, 180));
+        PanneauDeJeu.setBackground(new java.awt.Color(255, 255, 255));
         PanneauDeJeu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout PanneauDeJeuLayout = new javax.swing.GroupLayout(PanneauDeJeu);
@@ -306,7 +316,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(PanneauDeJeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 200, 200));
 
-        CompositionAlea.setBackground(new java.awt.Color(255, 255, 255));
+        CompositionAlea.setBackground(new java.awt.Color(0, 204, 204));
         CompositionAlea.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout CompositionAleaLayout = new javax.swing.GroupLayout(CompositionAlea);
@@ -359,18 +369,39 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         CouleursBienPlaces.setToolTipText("CouleursBienPlacés");
         CouleursBienPlaces.setAutoscrolls(true);
 
+        Bravo.setText("Nombre de ");
+
+        jLabel2.setText("Couleurs bien");
+
         javax.swing.GroupLayout CouleursBienPlacesLayout = new javax.swing.GroupLayout(CouleursBienPlaces);
         CouleursBienPlaces.setLayout(CouleursBienPlacesLayout);
         CouleursBienPlacesLayout.setHorizontalGroup(
             CouleursBienPlacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(CouleursBienPlacesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CouleursBienPlacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Bravo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addGroup(CouleursBienPlacesLayout.createSequentialGroup()
+                        .addComponent(CouleursBienPlacés)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         CouleursBienPlacesLayout.setVerticalGroup(
             CouleursBienPlacesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGroup(CouleursBienPlacesLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(Bravo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CouleursBienPlacés)
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         getContentPane().add(CouleursBienPlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 100, 250));
+
+        jPanel4.setBackground(new java.awt.Color(255, 204, 204));
 
         jButton2.setText("Valider");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -397,6 +428,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 100, 50));
+
+        jPanel5.setBackground(new java.awt.Color(204, 153, 255));
 
         Régles.setText("Regles");
         Régles.addActionListener(new java.awt.event.ActionListener() {
@@ -427,15 +460,32 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         BonnesCouleurs.setBackground(new java.awt.Color(255, 204, 204));
         BonnesCouleurs.setToolTipText("");
 
+        jLabel3.setText("Nombre de");
+
+        jLabel4.setText("Bonnes Couleurs");
+
         javax.swing.GroupLayout BonnesCouleursLayout = new javax.swing.GroupLayout(BonnesCouleurs);
         BonnesCouleurs.setLayout(BonnesCouleursLayout);
         BonnesCouleursLayout.setHorizontalGroup(
             BonnesCouleursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(BonnesCouleursLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(BonnesCouleursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(CouleursPrésentes, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         BonnesCouleursLayout.setVerticalGroup(
             BonnesCouleursLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGroup(BonnesCouleursLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CouleursPrésentes)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         getContentPane().add(BonnesCouleurs, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, 200));
@@ -479,21 +529,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 bienPlaces++;
             }
         }
-
-        // Créer une instance de la fenêtre Valider pour afficher les résultats
-        Valider fenetreValider = new Valider();
-
-        // Afficher les résultats dans la fenêtre Valider
-        fenetreValider.afficherResultats(bienPlaces, bonnesCouleurs);
-
+        CouleursBienPlacés.setText("placés : " + bienPlaces);
+        CouleursPrésentes.setText(": " + bonnesCouleurs);
+        // Créer une instance de la fenêtre Valider pour afficher les résultat       
         // Rendre la fenêtre visible
-        fenetreValider.setVisible(true);
-
         // Appeler la méthode pour afficher la ligne suivante
         afficherLigneSuivante();
         if (bienPlaces == 4) {
-            if (bonnesCouleurs == 4) {
-                fenetreValider.setVisible(false);
+            if (bonnesCouleurs == 4) {               
                 Valider V = new Valider();
                 V.show();
                 this.dispose();
@@ -548,13 +591,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AfficherCombinaisonSecrete;
     private javax.swing.JPanel BonnesCouleurs;
+    private javax.swing.JLabel Bravo;
     private javax.swing.JPanel CompositionAlea;
     private javax.swing.JPanel CouleursBienPlaces;
+    private javax.swing.JLabel CouleursBienPlacés;
+    private javax.swing.JLabel CouleursPrésentes;
     private javax.swing.JPanel Fond;
     private javax.swing.JPanel PanneauDeJeu;
     private javax.swing.JButton Régles;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
