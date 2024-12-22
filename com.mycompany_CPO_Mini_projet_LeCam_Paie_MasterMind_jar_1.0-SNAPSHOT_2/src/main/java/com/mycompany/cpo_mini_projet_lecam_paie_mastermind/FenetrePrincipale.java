@@ -531,8 +531,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         CouleursBienPlacés.setText("placés : " + bienPlaces);
         CouleursPrésentes.setText(": " + bonnesCouleurs);
-        // Créer une instance de la fenêtre Valider pour afficher les résultat       
-        // Rendre la fenêtre visible
         // Appeler la méthode pour afficher la ligne suivante
         afficherLigneSuivante();
         if (bienPlaces == 4) {
