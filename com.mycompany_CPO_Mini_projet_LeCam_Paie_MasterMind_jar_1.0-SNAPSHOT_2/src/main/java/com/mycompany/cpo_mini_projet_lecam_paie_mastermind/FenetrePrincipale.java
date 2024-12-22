@@ -127,35 +127,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         return couleursSecretes;
     }
 
-    private int[] comparerCombinaisons(Color[] joueur, Color[] secret) {
-        int bienPlaces = 0;
-        int malPlaces = 0;
-
-        boolean[] positionsDejaCompte = new boolean[4]; // Pour éviter les doublons
-        boolean[] couleursUtilisees = new boolean[4];
-
-        // Étape 1 : Compter les pions bien placés
-        for (int i = 0; i < 4; i++) {
-            if (joueur[i].equals(secret[i])) {
-                bienPlaces++;
-                positionsDejaCompte[i] = true;
-                couleursUtilisees[i] = true;
-            }
-        }
-        // Étape 2 : Compter les pions mal placés
-        for (int i = 0; i < 4; i++) {
-            if (!positionsDejaCompte[i]) {
-                for (int j = 0; j < 4; j++) {
-                    if (!couleursUtilisees[j] && joueur[i].equals(secret[j])) {
-                        malPlaces++;
-                        couleursUtilisees[j] = true;
-                        break;
-                    }
-                }
-            }
-        }
-        return new int[]{bienPlaces, malPlaces};
-    }
 
     public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
         int bonnesCouleurs = 0;
