@@ -249,10 +249,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         return bonnesCouleurs;
     }
-    public void afficherResultats(int bienPlaces, int malPlaces) {
-        CouleursBienPlacés.setText("Nombre de Couleurs bien placés : " + bienPlaces);
-        CouleursPrésentes.setText("Nombre de bonne Couleurs : " + malPlaces);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -511,10 +507,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_AfficherCombinaisonSecreteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-
-        // Récupérer les couleurs sélectionnées par l'utilisateur
-        Color[] couleursJoueur = recupererCouleursLigneActuelle();
+    Color[] couleursJoueur = recupererCouleursLigneActuelle();
 
         // Récupérer les couleurs de la combinaison secrète
         Color[] couleursSecretes = recupererCouleursSecretes();
