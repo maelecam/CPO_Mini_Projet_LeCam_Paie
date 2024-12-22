@@ -403,7 +403,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_RéglesActionPerformed
 
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
-        // TODO add your handling code here:
+        /*
+        * Bouton : permettre d'afficher la combinsaison à trouver
+        */
         CompositionAlea.setVisible(true);
     }
 
@@ -414,6 +416,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_AfficherCombinaisonSecreteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        /*
+        * Bouton 
+        */
         Color[] couleursJoueur = recupererCouleursLigneActuelle();
         Color[] couleursSecretes = recupererCouleursSecretes();
         int bonnesCouleurs = calculerBonnesCouleurs(couleursJoueur, couleursSecretes);
