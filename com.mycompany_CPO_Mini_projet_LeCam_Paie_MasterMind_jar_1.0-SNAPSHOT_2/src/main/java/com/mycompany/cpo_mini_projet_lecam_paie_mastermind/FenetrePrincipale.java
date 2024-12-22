@@ -16,17 +16,13 @@ import javax.swing.JOptionPane;
  * @author 33604
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
-    /**
-     * Initialise la fenêtre principale et configure la grille et la composition aléatoire.
-     */
     private Pion[] elements;
-    private int ligneActuelle = 0; 
+    private int ligneActuelle = 0;
     JButton[][] matBoutons = new JButton[10][4];
-
-    public FenetrePrincipale() {
-        /*
+    /*
         * Code du constructeur, création de la grille de jeu
-        */  
+     */
+    public FenetrePrincipale() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
         int nbLignes = 10;
@@ -79,11 +75,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         }
     }
-    private void afficherLigneSuivante() {
-        /*
+
+    /*
         * Code pour afficher la ligne suivante et cacher la ligne précédente
         * tout en voyant les couleurs choisis précédement
-        */
+     */
+    private void afficherLigneSuivante() {
         int nbLignes = matBoutons.length;
         int nbColonnes = matBoutons[0].length;
         for (int j = 0; j < nbColonnes; j++) {
@@ -110,6 +107,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             M.show();
         }
     }
+
     private Color[] recupererCouleursLigneActuelle() {
         Color[] couleursJoueur = new Color[4];
         for (int j = 0; j < 4; j++) {
@@ -117,6 +115,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         return couleursJoueur;
     }
+
+    /**
+     * Récupère les couleurs secrètes de la composition aléatoire.
+     *
+     * @return Un tableau de couleurs secrètes.
+     */
     private Color[] recupererCouleursSecretes() {
         Color[] couleursSecretes = new Color[4];
         for (int j = 0; j < 4; j++) {
@@ -125,9 +129,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
         return couleursSecretes;
     }
+
     public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
         int bonnesCouleurs = 0;
-        int[] frequencesSecretes = new int[6];  
+        int[] frequencesSecretes = new int[6];
         for (Color couleur : couleursSecretes) {
             if (couleur == Color.RED) {
                 frequencesSecretes[0]++;
@@ -146,7 +151,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         for (Color couleur : couleursJoueur) {
             if (couleur == Color.RED && frequencesSecretes[0] > 0) {
                 bonnesCouleurs++;
-                frequencesSecretes[0]--; 
+                frequencesSecretes[0]--;
             } else if (couleur == Color.GREEN && frequencesSecretes[1] > 0) {
                 bonnesCouleurs++;
                 frequencesSecretes[1]--;
@@ -415,7 +420,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
         /*
         * Bouton : permettre d'afficher la combinsaison à trouver
-        */
+         */
         CompositionAlea.setVisible(true);
     }
 
@@ -428,7 +433,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         /*
         * Bouton 
-        */
+         */
         Color[] couleursJoueur = recupererCouleursLigneActuelle();
         Color[] couleursSecretes = recupererCouleursSecretes();
         int bonnesCouleurs = calculerBonnesCouleurs(couleursJoueur, couleursSecretes);
