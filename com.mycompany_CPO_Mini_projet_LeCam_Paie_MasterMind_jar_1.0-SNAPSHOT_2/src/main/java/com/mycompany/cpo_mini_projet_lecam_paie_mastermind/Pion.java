@@ -5,14 +5,18 @@
 package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
 /**
- *
- * Le Cam Mael
+ * Classe représentant un pion avec une couleur associés.
  */
 public class Pion {
-    // Attribut : couleur du pion
+
     private Character couleur;
 
-    // Constructeur : initialise la couleur
+    /**
+     * Constructeur qui initialise un pion avec une couleur donnée.
+     *
+     * @param couleur La couleur du pion (caractère unique, ex : 'R' pour
+     * rouge).
+     */
     public Pion(Character couleur) {
         this.couleur = couleur;
     }
@@ -21,11 +25,18 @@ public class Pion {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    // Méthode getter pour accéder à la couleur
+    /**
+     * Getter pour obtenir la couleur du pion.
+     *
+     * @return La couleur du pion.
+     */
     public Character getCouleur() {
         return couleur;
     }
 
+    /**
+     * Méthode principale pour tester la classe Pion.
+     */
     public static void main() {
         Pion PionRouge = new Pion('R');
         Pion PionBleue = new Pion('B');
@@ -47,7 +58,11 @@ public class Pion {
         System.out.println("Pion d ecouleur noire : " + PionNoir.getCouleur());
     }
 
-    // Redéfinition de la méthode toString pour afficher la couleur
+    /**
+     * Redéfinition de la méthode toString pour retourner la couleur du pion.
+     *
+     * @return Une représentation en chaîne de la couleur du pion.
+     */
     @Override
     public String toString() {
         return couleur.toString();
