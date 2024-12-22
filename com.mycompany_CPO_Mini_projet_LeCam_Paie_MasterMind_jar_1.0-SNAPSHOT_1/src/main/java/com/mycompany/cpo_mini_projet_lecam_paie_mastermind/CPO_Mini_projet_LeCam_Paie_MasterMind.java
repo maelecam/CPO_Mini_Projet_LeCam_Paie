@@ -7,7 +7,7 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
 /**
  *
- * Version Console
+ * Version Console TDA
  */
 import java.util.Scanner;
 
