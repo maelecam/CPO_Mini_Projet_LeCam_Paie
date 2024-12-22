@@ -113,15 +113,13 @@ public class Valider extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitterActionPerformed
-        // TODO add your handling code here:
+        // Boutton permettant de quitter le jeu
         dispose();
     }//GEN-LAST:event_QuitterActionPerformed
 
     private void RecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecommencerActionPerformed
-        // TODO add your handling code here:
-        this.dispose(); // Ferme la fenêtre actuelle (si applicable)
-
-        // Relancez le jeu ou la fenêtre principale
+        // Boutton permettant de recommencer la partie
+        this.dispose(); 
         FenetrePrincipale nouvelleFenetre = new FenetrePrincipale();
         nouvelleFenetre.setVisible(true);
     }//GEN-LAST:event_RecommencerActionPerformed
