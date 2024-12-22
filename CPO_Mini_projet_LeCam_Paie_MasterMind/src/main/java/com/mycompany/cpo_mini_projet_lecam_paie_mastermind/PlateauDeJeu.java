@@ -2,8 +2,19 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Représente le plateau de jeu du Mastermind.
+ * Gère l'état du jeu, les tentatives des joueurs et les réponses associées.
+ */
 public class PlateauDeJeu {
+    /**
+     * Crée un nouveau plateau de jeu avec une combinaison secrète et un nombre
+     * maximum de tours.
+     * @param combinaisonSecrete La combinaison à deviner
+     * @param nbToursMax Le nombre maximum de tentatives autorisées
+     * @throws IllegalArgumentException si combinaisonSecrete est null ou si
+     * nbToursMax est négatif ou nul
+     */
     private Combinaison combinaisonSecrete;
     private List<Combinaison> tentatives;
     private List<String> reponses;
@@ -37,8 +48,8 @@ public class PlateauDeJeu {
     public void afficherPlateau() {
         System.out.println("État du plateau :");
         for (int i = 0; i < tentatives.size(); i++) {
-            System.out.println("Tentative " + (i + 1) + ": " 
-                    + tentatives.get(i).afficherCombinaisonLisible() 
+            System.out.println("Tentative " + (i + 1) + ": "
+                    + tentatives.get(i).afficherCombinaisonLisible()
                     + " -> Réponse: " + reponses.get(i));
         }
     }
@@ -62,8 +73,8 @@ public class PlateauDeJeu {
     public void afficherHistorique() {
         System.out.println("Historique des tentatives :");
         for (int i = 0; i < tentatives.size(); i++) {
-            System.out.println("Tour " + (i + 1) + ": " + tentatives.get(i).afficherCombinaisonLisible() 
-                                + " - " + reponses.get(i));
+            System.out.println("Tour " + (i + 1) + ": " + tentatives.get(i).afficherCombinaisonLisible()
+                    + " - " + reponses.get(i));
         }
     }
 
@@ -75,5 +86,3 @@ public class PlateauDeJeu {
         reponses.add(noirs + " noirs, " + blancs + " blancs");
     }
 }
-
-
