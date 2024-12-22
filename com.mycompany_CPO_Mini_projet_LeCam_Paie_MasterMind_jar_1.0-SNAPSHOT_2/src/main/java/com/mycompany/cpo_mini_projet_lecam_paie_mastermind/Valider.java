@@ -44,14 +44,14 @@ public class Valider extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel1.setBackground(new java.awt.Color(102, 255, 255));
 
         Félicitation.setBackground(new java.awt.Color(255, 255, 255));
         Félicitation.setText("Félicitation vous avez gagné");
 
         Bravo.setText("Vous avez trouvé la combinaison secréte");
 
-        jButton1.setText("RETOUR AU JEU");
+        jButton1.setText("Quitter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
