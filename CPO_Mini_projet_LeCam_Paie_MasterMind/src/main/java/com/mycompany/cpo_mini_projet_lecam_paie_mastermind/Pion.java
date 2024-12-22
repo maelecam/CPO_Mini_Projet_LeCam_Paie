@@ -6,7 +6,7 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
 /**
  *
- * Le Cam Mael
+ * 
  */
 public class Pion {
     // Attribut : couleur du pion

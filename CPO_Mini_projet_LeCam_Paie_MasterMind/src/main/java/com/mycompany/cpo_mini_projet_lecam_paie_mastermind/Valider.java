@@ -15,7 +15,7 @@ public class Valider extends javax.swing.JFrame {
     private Pion[] elements;
     private Combinaison combinaisonUtilisateur;
     private Combinaison combinaisonSecrete;
-
+    
     public Valider() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -27,6 +27,8 @@ public class Valider extends javax.swing.JFrame {
         Félicitation.setText("Nombre de Couleurs bien placés : " + bienPlaces);
         Bravo.setText("Nombre de bonne Couleurs : " + malPlaces);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +46,7 @@ public class Valider extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel1.setBackground(new java.awt.Color(153, 255, 204));
 
         Félicitation.setBackground(new java.awt.Color(255, 255, 255));
         Félicitation.setText("Félicitation vous avez gagné");
@@ -63,7 +65,6 @@ public class Valider extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(Félicitation)
