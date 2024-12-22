@@ -13,10 +13,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 33604
+ * @author Le Cam et Paie
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
-
     private Pion[] elements;
     private int ligneActuelle = 0;
     JButton[][] matBoutons = new JButton[10][4];
@@ -77,7 +76,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         }
     }
-
     /*
         * Code pour afficher la ligne suivante et cacher la ligne précédente
         * tout en voyant les couleurs choisis précédement
@@ -109,7 +107,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             M.show();
         }
     }
-
     /**
      * Récupère les couleurs secrètes de la composition aléatoire.
      *
@@ -430,6 +427,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void RéglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RéglesActionPerformed
         /*
+        * Bouton situé en haut à gauche
         * Bouton affichant les régles du jeu
         */
         afficher_regles R = new afficher_regles();
@@ -438,7 +436,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
         /*
-        * Bouton : permettre d'afficher la combinsaison secréte
+        * Bouton situé en bas à droite
+        * Bouton affichant la combinsaison secréte du jeu
          */
         CompositionAlea.setVisible(true);
     }
