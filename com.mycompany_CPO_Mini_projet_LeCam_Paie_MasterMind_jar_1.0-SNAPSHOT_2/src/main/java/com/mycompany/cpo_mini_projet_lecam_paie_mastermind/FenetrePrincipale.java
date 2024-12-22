@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Le Cam et Paie
+ * @author Le Cam Mael et Paie Irirava
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
     private Pion[] elements;
