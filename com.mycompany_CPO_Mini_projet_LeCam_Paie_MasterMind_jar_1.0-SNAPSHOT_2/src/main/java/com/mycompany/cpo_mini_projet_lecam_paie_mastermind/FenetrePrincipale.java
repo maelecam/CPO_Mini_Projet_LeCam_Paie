@@ -17,13 +17,16 @@ import javax.swing.JOptionPane;
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
     /**
-     * Creates new form FenetrePrincipale
+     * Initialise la fenêtre principale et configure la grille et la composition aléatoire.
      */
     private Pion[] elements;
     private int ligneActuelle = 0; 
     JButton[][] matBoutons = new JButton[10][4];
 
     public FenetrePrincipale() {
+        /*
+        * Code du constructeur, création de la grille de jeu
+        */  
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
         int nbLignes = 10;
@@ -77,6 +80,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
     }
     private void afficherLigneSuivante() {
+        /*
+        * Code pour afficher la ligne suivante et cacher la ligne précédente
+        * tout en voyant les couleurs choisis précédement
+        */
         int nbLignes = matBoutons.length;
         int nbColonnes = matBoutons[0].length;
         for (int j = 0; j < nbColonnes; j++) {
@@ -98,6 +105,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Vous avez atteint la dernière ligne !");
+            dispose();
         }
     }
     private Color[] recupererCouleursLigneActuelle() {
