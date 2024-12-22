@@ -6,7 +6,6 @@ package com.mycompany.cpo_mini_projet_lecam_paie_mastermind;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,13 +17,10 @@ import javax.swing.JOptionPane;
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
 
-    /**
+/**
      * Creates new form FenetrePrincipale
      */
-    private PlateauDeJeu plateau;
-    private ArrayList<Character> couleursDisponibles;
-    private int tailleCombinaison;
-    private Pion[] elements;
+        private Pion[] elements;
     private int ligneActuelle = 0; // Garde une trace de la ligne en cours
     private Partie partie;
     JButton[][] matBoutons = new JButton[10][4];
@@ -35,19 +31,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int nbLignes = 10;
         int nbColonnes = 4;
         PanneauDeJeu.setLayout(new GridLayout(nbLignes, nbColonnes));
-// Couleurs disponibles et leurs noms
         Color[] couleurs = {Color.RED, Color.YELLOW, Color.BLACK, Color.BLUE, Color.GREEN};
-
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
-
-                JButton bouton_cellule = new JButton(); // Création d'un bouton
-                bouton_cellule.setBackground(Color.WHITE); // Couleur par défaut
+                JButton bouton_cellule = new JButton(); 
+                bouton_cellule.setBackground(Color.WHITE); 
                 matBoutons[i][j] = bouton_cellule;
-
-                // Ajouter un ActionListener pour changer la couleur
                 bouton_cellule.addActionListener(e -> {
-                    // Affichage d'un menu d'options
                     String[] options = {"Rouge", "Jaune", "Noir", "Bleu", "Vert"};
                     int choix = JOptionPane.showOptionDialog(
                             this,
@@ -59,23 +49,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                             options,
                             options[0]
                     );
-
-                    // Appliquer la couleur choisie
                     if (choix >= 0) {
                         bouton_cellule.setBackground(couleurs[choix]);
                     }
                 });
-
                 PanneauDeJeu.add(bouton_cellule); // Ajouter le bouton au panneau
             }
         }
-
-// Ajout pour cacher toutes les lignes sauf la première
         for (int i = 1; i < nbLignes; i++) { // Commence à 1 pour ne pas cacher la première ligne
             for (int j = 0; j < nbColonnes; j++) {
                 matBoutons[i][j].setVisible(false); // Cache les boutons des autres lignes
             }
         }
+        /**
+         * Création de la grille aléatoire en bas du jeu
+         */
         int nbLignes2 = 1;
         int nbColonnes2 = 4;
         CompositionAlea.setLayout(new GridLayout(nbLignes2, nbColonnes2));
@@ -92,39 +80,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         }
     }
-
-    private void GrilleVerfierBienPlacés() {
-        int nbLignes3 = 2;
-        int nbColonnes3 = 2;
-
-        CouleursBienPlaces.setLayout(new GridLayout(nbLignes3, nbColonnes3));
-        CouleursBienPlaces.setVisible(false);
-        for (int i = 0; i < nbLignes3; i++) {
-            for (int j = 0; j < nbColonnes3; j++) {
-                JButton boutton_BienPlacés = new JButton();
-                boutton_BienPlacés.setBackground(Color.WHITE);
-                matBoutons[i][j] = boutton_BienPlacés;
-                CouleursBienPlaces.add(boutton_BienPlacés);
-
-            }
-        }
-    }
-
-    private void GrilleVerifierBonneCOuleurs() {
-        int nbLignes3 = 1;
-        int nbColonnes3 = 2;
-        CouleursBienPlaces.setLayout(new GridLayout(nbLignes3, nbColonnes3));
-        CouleursBienPlaces.setVisible(false);
-        for (int i = 0; i < nbLignes3; i++) {
-            for (int j = 0; j < nbColonnes3; j++) {
-                JButton boutton_BienPlacés = new JButton();
-                boutton_BienPlacés.setBackground(Color.WHITE);
-                matBoutons[i][j] = boutton_BienPlacés;
-                CouleursBienPlaces.add(boutton_BienPlacés);
-            }
-        }
-    }
-
     private void afficherLigneSuivante() {
         int nbLignes = matBoutons.length;
         int nbColonnes = matBoutons[0].length;
