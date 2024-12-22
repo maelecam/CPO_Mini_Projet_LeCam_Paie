@@ -16,9 +16,11 @@ import javax.swing.JOptionPane;
  * @author 33604
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
+
     private Pion[] elements;
     private int ligneActuelle = 0;
     JButton[][] matBoutons = new JButton[10][4];
+
     /*
         * Code du constructeur, création de la grille de jeu
      */
@@ -108,6 +110,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Récupère les couleurs secrètes de la composition aléatoire.
+     *
+     * @return Un tableau de couleurs.
+     */
     private Color[] recupererCouleursLigneActuelle() {
         Color[] couleursJoueur = new Color[4];
         for (int j = 0; j < 4; j++) {
@@ -130,6 +137,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         return couleursSecretes;
     }
 
+    /**
+     * Calcule le nombre de bonnes couleurs entre la ligne du joueur et la
+     * composition secrète.
+     *
+     * @param couleursJoueur La ligne actuelle du joueur.
+     * @param couleursSecretes La composition secrète.
+     * @return Le nombre de bonnes couleurs.
+     */
     public int calculerBonnesCouleurs(Color[] couleursJoueur, Color[] couleursSecretes) {
         int bonnesCouleurs = 0;
         int[] frequencesSecretes = new int[6];
@@ -193,7 +208,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         CouleursBienPlacés = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        Valider = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         Régles = new javax.swing.JButton();
         BonnesCouleurs = new javax.swing.JPanel();
@@ -321,10 +336,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 204));
 
-        jButton2.setText("Valider");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Valider.setMnemonic('V');
+        Valider.setText("Valider");
+        Valider.setBorder(null);
+        Valider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ValiderActionPerformed(evt);
             }
         });
 
@@ -334,14 +351,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addComponent(Valider, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addComponent(Valider, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -412,14 +429,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RéglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RéglesActionPerformed
-        // TODO add your handling code here:
+        /*
+        * Bouton affichant les régles du jeu
+        */
         afficher_regles R = new afficher_regles();
         R.show();
     }//GEN-LAST:event_RéglesActionPerformed
 
     private void AfficherCombinaisonSecreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AfficherCombinaisonSecreteActionPerformed
         /*
-        * Bouton : permettre d'afficher la combinsaison à trouver
+        * Bouton : permettre d'afficher la combinsaison secréte
          */
         CompositionAlea.setVisible(true);
     }
@@ -430,9 +449,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AfficherCombinaisonSecreteActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderActionPerformed
         /*
-        * Bouton 
+        * Bouton Valider combinaison choisis
+        * Afficher fenetre victoire 
          */
         Color[] couleursJoueur = recupererCouleursLigneActuelle();
         Color[] couleursSecretes = recupererCouleursSecretes();
@@ -453,7 +473,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 this.dispose();
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ValiderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -507,7 +527,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel Fond;
     private javax.swing.JPanel PanneauDeJeu;
     private javax.swing.JButton Régles;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Valider;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
